@@ -1,0 +1,16 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
+@tailwind screens;
+
+@font-face {
+  font-family: "Parisienne";
+  src: url("/fonts/Parisienne-Regular.woff2") format("woff2"),
+    url("/fonts/Parisienne-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
