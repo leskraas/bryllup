@@ -4,14 +4,13 @@ import { Form, NavLink, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import Image, { MimeType } from "remix-image";
 import dayjs from "dayjs";
-import { deleteNote, getNote } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
+// import { requireUserId } from "~/session.server";
 import LogLHjem from "/images/LogLHjem.png";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLink } from "~/components/arrow-button";
 
 export async function loader({ request, params }: LoaderArgs) {
-  const userId = await requireUserId(request);
+  // const userId = await requireUserId(request);
   // invariant(params.noteId, "noteId not found");
 
   // const note = await getNote({ userId, id: params.noteId });

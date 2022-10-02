@@ -10,7 +10,7 @@ import {
 } from "@remix-run/react";
 import remixImageStyles from "remix-image/remix-image.css";
 
-import { getUser } from "./session.server";
+// import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import duration from "dayjs/plugin/duration";
 import dayjs from "dayjs";
@@ -41,11 +41,11 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export async function loader({ request }: LoaderArgs) {
-  return json({
-    user: await getUser(request),
-  });
-}
+// export async function loader({ request }: LoaderArgs) {
+//   return json({
+//     user: await getUser(request),
+//   });
+// }
 
 export default function App() {
   return (
