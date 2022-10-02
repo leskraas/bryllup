@@ -40,7 +40,7 @@ export default function Index() {
   return (
     <main>
       <div className="flex h-screen flex-col sm:flex-row">
-        <div className="relative flex-1 basis-full">
+        <div className="relative flex flex-1 basis-full">
           <Image
             loaderUrl="/api/image"
             className="h-full object-cover opacity-30 "
