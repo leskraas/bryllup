@@ -39,27 +39,29 @@ export default function Index() {
 
   return (
     <main>
-      <div className="flex h-screen flex-col sm:flex-row">
+      <div className="pb-safe flex h-screen flex-col sm:flex-row">
         <div className="relative flex flex-1 basis-full">
           <Image
             loaderUrl="/api/image"
-            className="h-full object-cover opacity-30 "
+            className="h-full object-cover opacity-30"
             src="./images/LogLHjem.jpg"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
           />
           <div className="absolute top-1/2 w-full -translate-y-1/2 py-4 text-center">
-            <h1 className="font-heading text-7xl">
+            <h1 className="font-heading text-5xl sm:text-7xl">
               Louise <br /> og <br />
               Lars Erik
             </h1>
-            <p className="pt-3 text-xl font-light">
+            <p className="pt-3 text-lg font-light sm:text-xl">
               Vi gleder oss til å feire denne dagen med deg!
             </p>
           </div>
         </div>
-        <div className="flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-[rgb(194,161,135)]">
-          <h2 className="font-heading text-5xl">Grønolen Fjellgard</h2>
+        <div className=" flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-[rgb(194,161,135)]">
+          <h2 className="font-heading text-4xl sm:text-5xl">
+            Grønolen Fjellgard
+          </h2>
           <h3>18-20 August 2022</h3>
           <p className="flex gap-2">
             <span>{Math.floor(countDown.asDays())} dager</span>
