@@ -49,7 +49,7 @@ export default function Index() {
         <div className="relative flex flex-1 basis-full">
           <Image
             loaderUrl="/api/image"
-            className="h-screen object-cover opacity-30"
+            className="h-screen w-full object-cover opacity-30"
             src="./images/LogLHjem.jpg"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
