@@ -1,13 +1,19 @@
 import type { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form, NavLink, useCatch, useLoaderData } from "@remix-run/react";
+import {
+  Form,
+  NavLink,
+  Outlet,
+  useCatch,
+  useLoaderData,
+} from "@remix-run/react";
 import invariant from "tiny-invariant";
 import Image, { MimeType } from "remix-image";
 import dayjs from "dayjs";
 // import { requireUserId } from "~/session.server";
 import LogLHjem from "/images/LogLHjem.png";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLink } from "~/components/arrow-button";
+import { ArrowLink } from "~/components/ArrowButton";
 
 export async function loader({ request, params }: LoaderArgs) {
   // const userId = await requireUserId(request);
@@ -39,11 +45,11 @@ export default function Index() {
 
   return (
     <main>
-      <div className="pb-safe flex h-screen flex-col sm:flex-row">
+      <div className="pb-safe flex flex-col min-h-iphone-safe  sm:flex-row">
         <div className="relative flex flex-1 basis-full">
           <Image
             loaderUrl="/api/image"
-            className="h-full object-cover opacity-30"
+            className="h-screen object-cover opacity-30"
             src="./images/LogLHjem.jpg"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
@@ -70,17 +76,17 @@ export default function Index() {
             <span>{countDown.seconds()} sekunder</span>
           </p>
 
-          <ArrowLink className="pt-4" to="#hoved-innhold" direction="down">
+          <ArrowLink className="pt-4" to="/hvor" direction="right">
             Finn ut mer
           </ArrowLink>
         </div>
       </div>
-      <div id="hoved-innhold" className="h-screen">
+      {/* <div id="hoved-innhold" className="h-screen">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil explicabo
         sit, assumenda accusamus voluptate libero sunt facere odit, veritatis
         est laboriosam laborum nesciunt incidunt maxime at officiis ad molestias
         impedit.
-      </div>
+      </div> */}
       {/* <Image
         src={"./images/LogLHjem.jpg"}
         loaderUrl="/api/image"

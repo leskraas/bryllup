@@ -1,5 +1,4 @@
-import type { LinksFunction, LoaderArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -16,6 +15,7 @@ import duration from "dayjs/plugin/duration";
 import dayjs from "dayjs";
 import isLeapYear from "dayjs/plugin/isLeapYear";
 import "dayjs/locale/nb";
+import { NavBar } from "./components/NavBar";
 
 dayjs.extend(duration);
 dayjs.extend(isLeapYear);
@@ -30,6 +30,16 @@ export const links: LinksFunction = () => {
       type: "font/woff2",
       crossOrigin: "anonymous",
     },
+    { rel: "preconnect", href: "https://fonts.googleapis.com" },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "anonymous",
+    },
+    {
+      href: "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap",
+      rel: "stylesheet",
+    },
     { rel: "stylesheet", href: tailwindStylesheetUrl },
     { rel: "stylesheet", href: remixImageStyles },
   ];
@@ -38,7 +48,7 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Louise og Lars Erik",
-  viewport: "width=device-width,initial-scale=1",
+  viewport: "width=device-width,initial-scale=1,viewport-fit=cover",
 });
 
 // export async function loader({ request }: LoaderArgs) {
@@ -54,7 +64,8 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="pb-safe bg-[rgb(255,249,245)]">
+      <body className="pb-safe bg-sand-50 text-sand-900">
+        <NavBar />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
