@@ -6,12 +6,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ["Alex Brush", "cursive", ...defaultTheme.fontFamily.sans],
+        heading: ["Sacramento", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         sand: {
-          50: "#fcf7f0",
-          100: "#fbf3e9",
+          50: "#fefefd",
+          100: "#fdfbf7",
           200: "#f9ebdb",
           300: "#f6e3cc",
           400: "#f3dbbd",
@@ -25,6 +25,7 @@ module.exports = {
     },
   },
   plugins: [
+    require("@tailwindcss/forms"),
     ({ addUtilities }) => {
       addUtilities({
         ".min-h-iphone-safe": {

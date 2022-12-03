@@ -112,7 +112,7 @@ function ArrowButtonContent({
       ) : null}
 
       <div className="relative inline-flex h-14 w-14 flex-none items-center justify-center p-1">
-        <div className="absolute text-[rgb(220,206,195)]">
+        <div className="text-sand-600] absolute">
           <svg width="60" height="60">
             <circle
               stroke="currentColor"
@@ -124,7 +124,7 @@ function ArrowButtonContent({
             />
 
             <motion.circle
-              className="text-[rgb(194,161,135)]"
+              className="text-sand-600]"
               stroke="currentColor"
               strokeWidth="2"
               fill="transparent"
@@ -189,6 +189,7 @@ function ArrowLink({ to, href, ...props }: ArrowLinkProps) {
     return (
       <motion.a
         href={href}
+        target="_blank"
         {...getBaseProps(props)}
         ref={ref}
         animate={state}

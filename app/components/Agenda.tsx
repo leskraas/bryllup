@@ -14,7 +14,7 @@ export function Agenda({
   children,
 }: AgendaProps): JSX.Element {
   return (
-    <div className="my-2 ml-4 flex gap-4 sm:ml-10">
+    <div className="my-2 ml-4 flex gap-4">
       <p className="gap-.5 flex flex-col items-center pt-1 font-semibold sm:min-w-[11ch] sm:flex-row sm:items-start sm:justify-end sm:gap-1 sm:pt-0 sm:leading-8">
         <span>{timeFrom}</span>
         {timeFrom && timeTo && <span>-</span>}

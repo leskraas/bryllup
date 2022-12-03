@@ -37,7 +37,11 @@ export const links: LinksFunction = () => {
       crossOrigin: "anonymous",
     },
     {
-      href: "https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap",
+      href: "https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap",
+      rel: "stylesheet",
+    },
+    {
+      href: "https://fonts.googleapis.com/css2?family=Sacramento:wght@400&display=swap",
       rel: "stylesheet",
     },
     { rel: "stylesheet", href: tailwindStylesheetUrl },
@@ -64,9 +68,11 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="pb-safe bg-sand-50 text-sand-900">
-        <NavBar />
-        <Outlet />
+      <body className="pb-safe bg-sand-100 text-sand-900">
+        <div className="flex">
+          <Outlet />
+        </div>
+
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

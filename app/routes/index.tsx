@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import LogLHjem from "/images/LogLHjem.png";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLink } from "~/components/ArrowButton";
+import { motion } from "framer-motion";
 
 export async function loader({ request, params }: LoaderArgs) {
   // const userId = await requireUserId(request);
@@ -25,6 +26,21 @@ export async function loader({ request, params }: LoaderArgs) {
   // }
   return json({ hei: "hei" });
 }
+
+const draw = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: (i: number) => {
+    const delay = 1 + i * 0.5;
+    return {
+      pathLength: 1,
+      opacity: 1,
+      transition: {
+        pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
+        opacity: { delay, duration: 0.01 },
+      },
+    };
+  },
+};
 
 function getCountDown(fromDate: dayjs.Dayjs) {
   return dayjs.duration(dayjs("2023-09-19").diff(fromDate));
@@ -43,14 +59,16 @@ export default function Index() {
     };
   }, [countDown]);
 
+  // style={{stroke:"#000",strokeWidth:"0.25mm",fill:"#000"}}
+
   return (
     <main>
-      <div className="pb-safe flex flex-col min-h-iphone-safe  sm:flex-row">
+      <div className="pb-safe flex h-screen flex-col min-h-iphone-safe sm:flex-row">
         <div className="relative flex flex-1 basis-full">
           <Image
             loaderUrl="/api/image"
-            className="h-screen w-full object-cover opacity-30"
-            src="./images/LogLHjem.jpg"
+            className="h-full w-full object-cover opacity-50"
+            src="./images/initImage.jpg"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
           />
@@ -64,10 +82,8 @@ export default function Index() {
             </p>
           </div>
         </div>
-        <div className=" flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-[rgb(194,161,135)]">
-          <h2 className="font-heading text-4xl sm:text-5xl">
-            Grønolen Fjellgard
-          </h2>
+        <div className=" flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-slate-900">
+          <h2 className="text-4xl font-light sm:text-5xl">Grønolen Fjellgard</h2>
           <h3>18-20 August 2022</h3>
           <p className="flex gap-2">
             <span>{Math.floor(countDown.asDays())} dager</span>
@@ -76,22 +92,11 @@ export default function Index() {
             <span>{countDown.seconds()} sekunder</span>
           </p>
 
-          <ArrowLink className="pt-4" to="/hvor" direction="right">
+          <ArrowLink className="pt-4" to="/informasjon" direction="right">
             Finn ut mer
           </ArrowLink>
         </div>
       </div>
-      {/* <div id="hoved-innhold" className="h-screen">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil explicabo
-        sit, assumenda accusamus voluptate libero sunt facere odit, veritatis
-        est laboriosam laborum nesciunt incidunt maxime at officiis ad molestias
-        impedit.
-      </div> */}
-      {/* <Image
-        src={"./images/LogLHjem.jpg"}
-        loaderUrl="/api/image"
-        dprVariants={[1, 3]}
-      /> */}
     </main>
   );
 }
