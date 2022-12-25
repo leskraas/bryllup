@@ -5,5 +5,5 @@ type PageGridProps = {
 };
 
 export function PageGrid({ children }: PageGridProps): JSX.Element {
-  return <div className="my-4 grid grid-cols-2 gap-4">{children}</div>;
+  return <div className="mb-4 grid grid-cols-2 gap-4">{children}</div>;
 }

@@ -156,7 +156,7 @@
 //               <Link
 //                 className="text-blue-500 underline"
 //                 to={{
-//                   pathname: "/login",
+//                   pathname: "/logg-inn",
 //                   search: searchParams.toString(),
 //                 }}
 //               >

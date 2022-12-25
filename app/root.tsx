@@ -55,12 +55,6 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1,viewport-fit=cover",
 });
 
-// export async function loader({ request }: LoaderArgs) {
-//   return json({
-//     user: await getUser(request),
-//   });
-// }
-
 export default function App() {
   return (
     <html lang="en" className="scroll-smooth">
@@ -68,11 +62,8 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="pb-safe bg-sand-100 text-sand-900">
-        <div className="flex">
-          <Outlet />
-        </div>
-
+      <body className="pb-safe h-screen bg-sand-100 text-sand-900">
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

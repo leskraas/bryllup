@@ -7,25 +7,38 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Wedding {
-  id          String @id @default(cuid())
-  weddingName String @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  guestPassword GuestPassword?
-  adminPassword Password?
+model User {
+  id            String    @id @default(cuid())
+  password      Password?
+  name          String    @unique
+  imgSrc        String?
+  role          Role      @default(GUEST)
+  rsvp          Rsvp?
+  submittedRsvp Rsvp[]    @relation(name: "submittedPsvp")
 }
 
 model Password {
-  hash      String
-  wedding   Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  weddingId String  @unique
+  password String
+  User     User   @relation(fields: [userName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+  userName String @unique
 }
 
-model GuestPassword {
-  hash      String
-  wedding   Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  weddingId String  @unique
+model Rsvp {
+  attend        Attend
+  submitter     User    @relation(fields: [submitterName], references: [name], name: "submittedPsvp", onDelete: Cascade, onUpdate: Cascade)
+  attender      User    @relation(fields: [attenderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+  attenderName  String  @unique
+  submitterName String
+  allergies     String?
+}
+
+enum Attend {
+  YES
+  NO
+  SATURDAY
+}
+
+enum Role {
+  GUEST
+  ADMIN
 }

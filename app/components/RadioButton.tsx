@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames";
+import clsx from "clsx";
 
 type RadioButtonProps = {
   name: string;
@@ -16,7 +16,7 @@ export function RadioButton({
   ...rest
 }: RadioButtonProps): JSX.Element {
   return (
-    <div className={classNames("flex items-center", className)}>
+    <div className={clsx("flex items-center", className)}>
       <input
         type="radio"
         id={id}

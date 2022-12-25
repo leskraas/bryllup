@@ -1,15 +1,12 @@
 import { PresentPerson } from "~/components/PresentPerson";
 import { Card } from "~/components/Card";
 import { PageGrid } from "~/components/PageGrid";
-import { ArrowLink } from "~/components/ArrowButton";
 import { Link } from "@remix-run/react";
+import { MainLayout } from "~/components/layout/MainLayout";
 
 export default function Index() {
   return (
-    <main className="m-2 sm:m-8">
-      <h1 className="font-heading text-3xl text-sand-900 sm:text-6xl">
-        Informasjon
-      </h1>
+    <MainLayout heading="Informasjon">
       <PageGrid>
         <div className="grid content-start gap-4">
           <Card title="Overnatting">
@@ -72,6 +69,6 @@ export default function Index() {
           </div>
         </div>
       </PageGrid>
-    </main>
+    </MainLayout>
   );
 }

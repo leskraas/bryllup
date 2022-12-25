@@ -1,63 +1,92 @@
-// import type { Password, User } from "@prisma/client";
+import type { Password, User } from "@prisma/client";
 // import bcrypt from "bcryptjs";
-export {};
 
-// import { prisma } from "~/db.server";
+import { prisma } from "~/db.server";
 
-// export type { User } from "@prisma/client";
+export type { User } from "@prisma/client";
 
-// export async function getUserById(id: User["id"]) {
-//   return prisma.user.findUnique({ where: { id } });
-// }
+export async function getUserById(id: User["id"]) {
+  return prisma.user.findUnique({ where: { id } });
+}
 
-// export async function getUserByEmail(email: User["email"]) {
-//   return prisma.user.findUnique({ where: { email } });
-// }
+export async function getAllUsers() {
+  return prisma.user.findMany({ select: { name: true, imgSrc: true } });
+}
 
-// export async function createUser(email: User["email"], password: string) {
-//   const hashedPassword = await bcrypt.hash(password, 10);
+export async function getAllUsersAndPassword() {
+  return prisma.user.findMany({
+    include: { password: true },
+  });
+}
 
-//   return prisma.user.create({
-//     data: {
-//       email,
-//       password: {
-//         create: {
-//           hash: hashedPassword,
-//         },
-//       },
-//     },
-//   });
-// }
+export async function getAllUsersAll() {
+  return prisma.user.findMany();
+}
 
-// export async function deleteUserByEmail(email: User["email"]) {
-//   return prisma.user.delete({ where: { email } });
-// }
+export async function getUserByName(name: User["name"]) {
+  return prisma.user.findUnique({ where: { name } });
+}
 
-// export async function verifyLogin(
-//   email: User["email"],
-//   password: Password["hash"]
-// ) {
-//   const userWithPassword = await prisma.user.findUnique({
-//     where: { email },
-//     include: {
-//       password: true,
-//     },
-//   });
+export async function createUser(
+  user: Omit<User, "id">,
+  password: Password["password"]
+) {
+  return prisma.user.create({
+    data: {
+      ...user,
+      password: {
+        create: {
+          password,
+        },
+      },
+    },
+  });
+}
 
-//   if (!userWithPassword || !userWithPassword.password) {
-//     return null;
-//   }
+export async function updateUser(
+  { id, ...userData }: User,
+  password: Password["password"]
+) {
+  return prisma.user.update({
+    data: {
+      ...userData,
+      password: {
+        upsert: {
+          create: {
+            password,
+          },
+          update: {
+            password,
+          },
+        },
+      },
+    },
+    where: {
+      id: id,
+    },
+  });
+}
 
-//   const isValid = await bcrypt.compare(
-//     password,
-//     userWithPassword.password.hash
-//   );
+export async function deleteUserByEmail(name: User["name"]) {
+  return prisma.user.delete({ where: { name } });
+}
 
-//   if (!isValid) {
-//     return null;
-//   }
+export async function verifyLogin(
+  name: User["name"],
+  password: Password["password"]
+) {
+  const userWithPassword = await prisma.user.findUnique({
+    where: { name },
+    include: {
+      password: true,
+    },
+  });
 
-//   const { password: _password, ...userWithoutPassword } = userWithPassword;
+  if (!userWithPassword || userWithPassword.password?.password !== password) {
+    return null;
+  }
 
-//   return userWithoutPassword;
-// }
+  const { password: _password, ...userWithoutPassword } = userWithPassword;
+
+  return userWithoutPassword;
+}

@@ -3,11 +3,11 @@ import { Agenda } from "~/components/Agenda";
 import { PresentPerson } from "~/components/PresentPerson";
 import { Card } from "~/components/Card";
 import { DaySeparator } from "~/components/DaySeparator";
+import { MainLayout } from "~/components/layout/MainLayout";
 
 export default function Index() {
   return (
-    <main className="m-2 sm:m-8">
-      <h1 className="font-heading text-5xl sm:text-6xl">Programmet</h1>
+    <MainLayout heading="Programmet">
       <Card>
         <DaySeparator date={dayjs("2023.08.18")} />
         <Agenda timeFrom="" timeTo="10:00" title="Frokost">
@@ -61,6 +61,6 @@ export default function Index() {
           </p>
         </Agenda>
       </Card>
-    </main>
+    </MainLayout>
   );
 }
