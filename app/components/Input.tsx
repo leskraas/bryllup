@@ -23,9 +23,13 @@ export const Input = forwardRef(function Input(
   }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
+  const isCheckbox = rest.type === "checkbox";
   return (
     <div className={className}>
-      <label htmlFor={id} className="text-md block font-medium text-slate-900">
+      <label
+        htmlFor={id}
+        className="text-md mb-1 block font-medium text-slate-900"
+      >
         {label}
       </label>
       <input
@@ -36,7 +40,10 @@ export const Input = forwardRef(function Input(
         aria-invalid={errorMessage ? true : undefined}
         aria-describedby={`${id}-error`}
         className={clsx(
-          "sm:text-md mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
+          "sm:text-md block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
+          {
+            "mt-auto h-5 w-5": isCheckbox,
+          },
           classNameInput
         )}
         {...rest}

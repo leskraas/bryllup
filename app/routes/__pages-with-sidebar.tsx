@@ -2,7 +2,6 @@ import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { NavBar } from "~/components/NavBar";
-import { getUserById } from "~/models/user.server";
 import { getUser } from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {

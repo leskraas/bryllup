@@ -70,7 +70,7 @@ export function AddUserInput({
           value="ADMIN"
           defaultChecked={user?.role === "ADMIN"}
           type="checkbox"
-          classNameInput="h-4 w-4 rounded m-auto mt-auto"
+          classNameInput="m-auto"
           className="flex w-[10ch] flex-col items-center"
         />
       </div>

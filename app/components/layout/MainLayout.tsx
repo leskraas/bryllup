@@ -10,7 +10,7 @@ export function MainLayout({
   children,
 }: MainLayoutProps): JSX.Element {
   return (
-    <main className="m-2 sm:m-8">
+    <main className="max-h-screen overflow-scroll p-2 sm:p-8">
       <h1 className="mb-4 font-heading text-3xl text-sand-900 sm:text-6xl">
         {heading}
       </h1>
