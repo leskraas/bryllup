@@ -13,9 +13,11 @@ export async function loader({ request }: LoaderArgs) {
 export default function Index(): JSX.Element {
   const { user } = useLoaderData<typeof loader>();
   return (
-    <div className="flex">
+    <div>
       <NavBar user={user} />
-      <Outlet />
+      <div className="flex pl-0 pb-24 pt-4 sm:pl-48">
+        <Outlet />
+      </div>
     </div>
   );
 }

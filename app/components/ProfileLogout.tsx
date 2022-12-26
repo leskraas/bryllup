@@ -1,7 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import type { User } from "@prisma/client";
-import { Form } from "@remix-run/react";
+import { Form, useLocation } from "@remix-run/react";
 import clsx from "clsx";
 import { Fragment } from "react";
 
@@ -10,8 +10,9 @@ type LoginLogoutProps = {
 };
 
 export function ProfileLogout({ user }: LoginLogoutProps): JSX.Element {
+  const location = useLocation();
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block">
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -22,7 +23,7 @@ export function ProfileLogout({ user }: LoginLogoutProps): JSX.Element {
         leaveTo="transform opacity-0 scale-95"
       >
         <Form action="/logg-ut" method="post">
-          <Menu.Items className="absolute left-0 bottom-0 z-10 mb-2 w-56 origin-bottom-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 z-10 mb-2 mt-2 w-44 origin-bottom-left translate-y-full rounded-md bg-white text-left shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:left-0 sm:bottom-0 sm:mt-0 sm:translate-y-0">
             <div className="py-1">
               <input
                 type="hidden"
@@ -47,13 +48,13 @@ export function ProfileLogout({ user }: LoginLogoutProps): JSX.Element {
           </Menu.Items>
         </Form>
       </Transition>
-      <Menu.Button className="flex items-center gap-3">
+      <Menu.Button className="flex items-center gap-3 text-left">
         <img
           src={user?.imgSrc || ""}
           alt={user.name}
-          className="h-7 w-7 rounded-full object-cover"
+          className="h-12 w-12 rounded-full object-cover sm:h-7 sm:w-7"
         />
-        <p>{user.name}</p>
+        <p className="hidden sm:block">{user.name}</p>
       </Menu.Button>
     </Menu>
   );

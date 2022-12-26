@@ -3,6 +3,7 @@ import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import type { ActionArgs, LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import { Button } from "~/components/Button";
+import { Card } from "~/components/Card";
 import { Input } from "~/components/Input";
 import { MainLayout } from "~/components/layout/MainLayout";
 import { RadioButton } from "~/components/RadioButton";
@@ -78,7 +79,7 @@ export default function Rsvp(): JSX.Element {
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="mt-5 md:col-span-2 md:mt-0">
           <Form method="post" replace>
-            <div className="overflow-hidden bg-white shadow sm:rounded-md">
+            <Card>
               <div className="px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
                   <UserSelector
@@ -153,7 +154,7 @@ export default function Rsvp(): JSX.Element {
               <div className="px-4 py-3 text-right sm:px-6">
                 <Button type="submit">Send inn</Button>
               </div>
-            </div>
+            </Card>
           </Form>
         </div>
       </div>

@@ -57,12 +57,12 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="overflow-hidden scroll-smooth">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="pb-safe h-screen bg-sand-100 text-sand-900">
+      <body className="h-screen w-screen overflow-x-hidden bg-sand-100 text-sand-900">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
