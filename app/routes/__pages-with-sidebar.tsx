@@ -15,7 +15,7 @@ export default function Index(): JSX.Element {
   return (
     <div>
       <NavBar user={user} />
-      <div className="flex pl-0 pb-24 pt-4 sm:pl-48">
+      <div className="mb-24 flex min-h-screen pl-0 pt-4 sm:ml-48">
         <Outlet />
       </div>
     </div>

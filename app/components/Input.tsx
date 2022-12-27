@@ -9,6 +9,7 @@ type InputProps = {
   className?: string;
   classNameInput?: string;
   errorMessage?: string | null;
+  description?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export const Input = forwardRef(function Input(
@@ -19,6 +20,7 @@ export const Input = forwardRef(function Input(
     errorMessage,
     id,
     classNameInput,
+    description,
     ...rest
   }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
@@ -26,12 +28,10 @@ export const Input = forwardRef(function Input(
   const isCheckbox = rest.type === "checkbox";
   return (
     <div className={className}>
-      <label
-        htmlFor={id}
-        className="text-md mb-1 block font-medium text-slate-900"
-      >
+      <label htmlFor={id} className="text-md block font-medium text-slate-900">
         {label}
       </label>
+      {description && <p className="text-sm text-slate-500">{description}</p>}
       <input
         type="text"
         name={name}
@@ -40,7 +40,7 @@ export const Input = forwardRef(function Input(
         aria-invalid={errorMessage ? true : undefined}
         aria-describedby={`${id}-error`}
         className={clsx(
-          "sm:text-md block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
+          "sm:text-md mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
           {
             "mt-auto h-5 w-5": isCheckbox,
           },

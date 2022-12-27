@@ -8,14 +8,11 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import remixImageStyles from "remix-image/remix-image.css";
-
-// import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import duration from "dayjs/plugin/duration";
 import dayjs from "dayjs";
 import isLeapYear from "dayjs/plugin/isLeapYear";
 import "dayjs/locale/nb";
-import { NavBar } from "./components/NavBar";
 
 dayjs.extend(duration);
 dayjs.extend(isLeapYear);

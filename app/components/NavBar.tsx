@@ -37,9 +37,9 @@ export function NavBar({ user }: Props): JSX.Element {
         <NavBarLink to="/programmet">
           <DocumentTextIcon className="h-5 w-5" /> Programmet
         </NavBarLink>
-        <NavBarLink to="/rsvp">
+        <NavBarLink to="/su">
           <PencilSquareIcon className="h-5 w-5" />
-          RSVP
+          Svar utbedes
         </NavBarLink>
         {user?.role === "ADMIN" && (
           <NavBarLink to="/admin">
@@ -57,7 +57,7 @@ export function NavBar({ user }: Props): JSX.Element {
               pathname: "/logg-inn",
               search: `redirectTo=${location.pathname}`,
             }}
-            className="text-md inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-900 bg-slate-900 bg-transparent py-2 px-4 font-medium text-slate-900 shadow-sm hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="text-md inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-900 bg-sand-100 py-2 px-4 font-medium text-slate-900 shadow-sm hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             <ArrowLeftOnRectangleIcon className="h-5 w-5" />
             Logg inn
