@@ -15,7 +15,8 @@ export function ProfileImage({
   return (
     <img
       src={imgSrc}
-      alt={name}
+      alt={""}
+      aria-label={name}
       className={clsx("h-5 w-5 rounded-full object-cover", className)}
       {...rest}
     />

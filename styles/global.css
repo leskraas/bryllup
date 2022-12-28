@@ -38,15 +38,15 @@ body {
 ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
-  background: #fff3;
+  background: rgba(255, 255, 255, 0.301);
   -webkit-border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(34, 33, 30);
+  background: rgba(10, 19, 33, 0.7);
   -webkit-border-radius: 1ex;
 }
 
 ::-webkit-scrollbar-corner {
-  background: #fff3;
+  background: rgba(255, 255, 255, 0.301);
 }

@@ -6,15 +6,23 @@ import { Button } from "~/components/Button";
 import { Card } from "~/components/Card";
 import { Input } from "~/components/Input";
 import { MainLayout } from "~/components/layout/MainLayout";
+import { ProfileImage } from "~/components/ProfileImage";
 import { RadioButton } from "~/components/RadioButton";
 import { UserSelector } from "~/components/UserSelector";
-import { getAllUsers, verifyLogin } from "~/models/user.server";
-import { createUserSession, isLoggedIn } from "~/session.server";
+import { getAllUsers, getRsvpById, verifyLogin } from "~/models/user.server";
+import { createUserSession, getUserId } from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {
-  const loggedIn = await isLoggedIn(request);
+  const loggedInUserId = await getUserId(request);
+  const isLoggedIn = !!loggedInUserId;
   const allUsers = await getAllUsers();
-  return json({ allUsers, isLoggedIn: loggedIn });
+  if (!isLoggedIn) {
+    return json({ allUsers, isLoggedIn, rsvpLoggedInUser: null });
+  }
+
+  const rsvpLoggedInUser = await getRsvpById(loggedInUserId);
+
+  return json({ allUsers, isLoggedIn, rsvpLoggedInUser });
 }
 
 export async function action({ request }: ActionArgs) {
@@ -76,84 +84,109 @@ export default function Rsvp(): JSX.Element {
   const actionData = useActionData<typeof action>();
   return (
     <MainLayout heading="Svar utbedes">
-      <Form method="post" replace>
-        <Card>
-          <div className="px-4 py-5 sm:p-6">
-            <div className="grid grid-cols-6 gap-6">
-              <UserSelector
-                className="col-span-6 sm:col-span-4"
-                name="name"
-                allUsers={loaderData.allUsers}
-              />
-              {!loaderData.isLoggedIn && (
-                <>
-                  <Input
-                    className="col-span-3"
-                    id="password"
-                    label="Passord"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    errorMessage={actionData?.errors.password}
-                    description="Passordet finner du i din invitasjon."
-                  />
-                </>
-              )}
-              <fieldset
-                className="col-span-6"
-                aria-describedby="attend-error"
-                aria-invalid={actionData?.errors.attend ? true : undefined}
-              >
-                <legend className="contents text-base font-medium text-slate-900">
-                  Kommer du?
-                </legend>
-
-                <div className="mt-4 space-y-4">
-                  <RadioButton
-                    id="attend-yes"
-                    name="attend"
-                    value={Attend.YES}
-                    label="Ja, hele helgen"
-                  />
-                  <RadioButton
-                    id="attend-only-saturday"
-                    name="attend"
-                    value={Attend.SATURDAY}
-                    label="Ja, men kan kun være der lørdag"
-                  />
-                  <RadioButton
-                    id="attend-no"
-                    name="attend"
-                    value={Attend.NO}
-                    label="
-                      Nei, dessverre"
-                  />
-                </div>
-                {actionData?.errors.attend && (
-                  <p
-                    id="attend-error"
-                    className="mt-1 text-red-600 dark:text-red-500"
-                  >
-                    {actionData.errors.attend}
-                  </p>
+      <div className="grid gap-4">
+        <Form method="post" replace>
+          <Card>
+            <div className="px-4 py-5 sm:p-6">
+              <div className="grid grid-cols-6 gap-6">
+                <UserSelector
+                  className="col-span-6 sm:col-span-4"
+                  name="name"
+                  allUsers={loaderData.allUsers}
+                />
+                {!loaderData.isLoggedIn && (
+                  <>
+                    <Input
+                      className="col-span-3"
+                      id="password"
+                      label="Passord"
+                      name="password"
+                      type="password"
+                      autoComplete="current-password"
+                      errorMessage={actionData?.errors.password}
+                      description="Passordet finner du i din invitasjon."
+                    />
+                  </>
                 )}
-              </fieldset>
+                <fieldset
+                  className="col-span-6"
+                  aria-describedby="attend-error"
+                  aria-invalid={actionData?.errors.attend ? true : undefined}
+                >
+                  <legend className="contents text-base font-medium text-slate-900">
+                    Kommer du?
+                  </legend>
 
-              <Input
-                className="col-span-6 sm:col-span-6"
-                name="allergies"
-                id="allergies"
-                autoComplete="allergies"
-                label="Allergier"
-              />
+                  <div className="mt-4 space-y-4">
+                    <RadioButton
+                      id="attend-yes"
+                      name="attend"
+                      value={Attend.YES}
+                      label="Ja, hele helgen"
+                    />
+                    <RadioButton
+                      id="attend-only-saturday"
+                      name="attend"
+                      value={Attend.SATURDAY}
+                      label="Ja, men kan kun være der lørdag"
+                    />
+                    <RadioButton
+                      id="attend-no"
+                      name="attend"
+                      value={Attend.NO}
+                      label="
+                      Nei, dessverre"
+                    />
+                  </div>
+                  {actionData?.errors.attend && (
+                    <p
+                      id="attend-error"
+                      className="mt-1 text-red-600 dark:text-red-500"
+                    >
+                      {actionData.errors.attend}
+                    </p>
+                  )}
+                </fieldset>
+
+                <Input
+                  className="col-span-6 sm:col-span-6"
+                  name="allergies"
+                  id="allergies"
+                  autoComplete="allergies"
+                  label="Allergier"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="px-4 py-3 text-right sm:px-6">
-            <Button type="submit">Send inn</Button>
-          </div>
-        </Card>
-      </Form>
+            <div className="px-4 py-3 text-right sm:px-6">
+              <Button type="submit">Send inn</Button>
+            </div>
+          </Card>
+        </Form>
+        <div>
+          {loaderData.rsvpLoggedInUser?.length && (
+            <div className="grid gap-2">
+              <h3 className="text-2xl font-thin">Dine innsendte svar: </h3>
+              {loaderData.rsvpLoggedInUser?.map((rsvp) => (
+                <div
+                  key={`rsvp-${rsvp.attenderName}-${rsvp.submitterName}`}
+                  className="grid grid-cols-12"
+                >
+                  <ProfileImage
+                    imgSrc={rsvp.attender.imgSrc || ""}
+                    name={rsvp.attenderName}
+                  />
+                  <span className="col-span-5 font-bold">
+                    {rsvp.attenderName}
+                  </span>
+                  <span>{rsvp.attend}</span>
+                  <span className="col-span-5">{rsvp.allergies}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </MainLayout>
   );
 }

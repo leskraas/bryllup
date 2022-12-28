@@ -52,7 +52,9 @@ export function ProfileLogout({ user }: LoginLogoutProps): JSX.Element {
         <img
           src={user?.imgSrc || ""}
           alt={user.name}
-          className="h-12 w-12 rounded-full object-cover sm:h-7 sm:w-7"
+          className={clsx(
+            "h-10 w-10 rounded-full object-cover shadow-lg sm:h-7 sm:w-7 sm:shadow-none"
+          )}
         />
         <p className="hidden sm:block">{user.name}</p>
       </Menu.Button>

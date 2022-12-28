@@ -19,7 +19,7 @@ export function NavBar({ user }: Props): JSX.Element {
   const location = useLocation();
 
   return (
-    <nav className="fixed z-50 flex w-screen justify-end p-4 sm:fixed sm:left-0 sm:top-0 sm:bottom-0 sm:h-screen sm:w-48 sm:flex-col sm:justify-start sm:p-3">
+    <nav className="fixed z-50 flex w-screen justify-end p-4 sm:fixed sm:left-0 sm:top-0 sm:bottom-0 sm:h-screen sm:w-56 sm:flex-col sm:justify-start sm:p-3">
       <NavLink
         to="/"
         className="mt-4 hidden text-center text-4xl font-extralight sm:block"

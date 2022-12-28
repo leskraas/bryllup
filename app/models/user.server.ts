@@ -8,6 +8,22 @@ export type { User } from "@prisma/client";
 export async function getUserById(id: User["id"]) {
   return prisma.user.findUnique({ where: { id } });
 }
+export async function getRsvpById(id: User["id"]) {
+  return prisma.rsvp.findMany({
+    where: {
+      submitter: {
+        id,
+      },
+    },
+    include: {
+      attender: {
+        select: {
+          imgSrc: true,
+        },
+      },
+    },
+  });
+}
 
 export async function getAllUsers() {
   return prisma.user.findMany({ select: { name: true, imgSrc: true } });
