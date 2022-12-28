@@ -164,27 +164,28 @@ export default function Rsvp(): JSX.Element {
           </Card>
         </Form>
         <div>
-          {loaderData.rsvpLoggedInUser?.length && (
-            <div className="grid gap-2">
-              <h3 className="text-2xl font-thin">Dine innsendte svar: </h3>
-              {loaderData.rsvpLoggedInUser?.map((rsvp) => (
-                <div
-                  key={`rsvp-${rsvp.attenderName}-${rsvp.submitterName}`}
-                  className="grid grid-cols-12"
-                >
-                  <ProfileImage
-                    imgSrc={rsvp.attender.imgSrc || ""}
-                    name={rsvp.attenderName}
-                  />
-                  <span className="col-span-5 font-bold">
-                    {rsvp.attenderName}
-                  </span>
-                  <span>{rsvp.attend}</span>
-                  <span className="col-span-5">{rsvp.allergies}</span>
-                </div>
-              ))}
-            </div>
-          )}
+          {loaderData.rsvpLoggedInUser &&
+            loaderData.rsvpLoggedInUser.length > 0 && (
+              <div className="grid gap-2">
+                <h3 className="text-2xl font-thin">Dine innsendte svar: </h3>
+                {loaderData.rsvpLoggedInUser?.map((rsvp) => (
+                  <div
+                    key={`rsvp-${rsvp.attenderName}-${rsvp.submitterName}`}
+                    className="grid grid-cols-12"
+                  >
+                    <ProfileImage
+                      imgSrc={rsvp.attender.imgSrc || ""}
+                      name={rsvp.attenderName}
+                    />
+                    <span className="col-span-5 font-bold">
+                      {rsvp.attenderName}
+                    </span>
+                    <span>{rsvp.attend}</span>
+                    <span className="col-span-5">{rsvp.allergies}</span>
+                  </div>
+                ))}
+              </div>
+            )}
         </div>
       </div>
     </MainLayout>

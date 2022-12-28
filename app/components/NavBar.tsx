@@ -26,7 +26,7 @@ export function NavBar({ user }: Props): JSX.Element {
       >
         L&L
       </NavLink>
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex h-14 w-full justify-between overflow-hidden bg-white shadow-[0_0_40px_-15px_rgba(0,0,0,0.3)] sm:relative sm:inset-auto sm:mt-8 sm:mb-auto sm:flex sm:h-auto sm:flex-col sm:items-stretch sm:gap-2 sm:rounded-none sm:bg-transparent sm:shadow-none">
+      <div className="fixed bottom-0 left-0 z-50 flex h-14 w-full justify-between overflow-hidden bg-white shadow-[0_0_40px_-15px_rgba(0,0,0,0.3)] sm:relative sm:inset-auto sm:mt-8 sm:mb-auto sm:flex sm:h-auto sm:flex-col sm:items-stretch sm:gap-2 sm:rounded-none sm:bg-transparent sm:shadow-none">
         <NavBarLink to="/informasjon">
           <InformationCircleIcon className="h-5 w-5" /> Informasjon
         </NavBarLink>
