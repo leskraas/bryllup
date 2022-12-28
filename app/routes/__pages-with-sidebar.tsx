@@ -2,6 +2,7 @@ import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { NavBar } from "~/components/NavBar";
+import { NavBarMobile } from "~/components/NavBarMobile";
 import { getUser } from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {
@@ -13,11 +14,14 @@ export async function loader({ request }: LoaderArgs) {
 export default function Index(): JSX.Element {
   const { user } = useLoaderData<typeof loader>();
   return (
-    <div>
-      <NavBar user={user} />
-      <div className="flex min-h-screen pb-24 pl-0 pt-4 sm:pl-60">
-        <Outlet />
+    <div className="flex flex-col-reverse sm:flex-row">
+      <div className="hidden sm:block">
+        <NavBar user={user} />
       </div>
+      <div className="sm:hidden">
+        <NavBarMobile user={user} />
+      </div>
+      <Outlet />
     </div>
   );
 }
