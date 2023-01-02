@@ -10,9 +10,9 @@ type InputProps = {
   classNameInput?: string;
   errorMessage?: string | null;
   description?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+} & React.InputHTMLAttributes<HTMLTextAreaElement>;
 
-export const Input = forwardRef(function Input(
+export const InputTexterea = forwardRef(function Input(
   {
     label,
     className,
@@ -23,7 +23,7 @@ export const Input = forwardRef(function Input(
     description,
     ...rest
   }: InputProps,
-  ref: ForwardedRef<HTMLInputElement>
+  ref: ForwardedRef<HTMLTextAreaElement>
 ) {
   const isCheckbox = rest.type === "checkbox";
   return (
@@ -32,7 +32,7 @@ export const Input = forwardRef(function Input(
         {label}
       </label>
       {description && <p className="text-sm text-slate-500">{description}</p>}
-      <input
+      <textarea
         type="text"
         name={name}
         id={id}

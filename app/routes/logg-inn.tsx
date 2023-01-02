@@ -8,16 +8,17 @@ import {
 } from "@remix-run/react";
 import { Button } from "~/components/Button";
 import { Input } from "~/components/Input";
-import { getAllUsers, verifyLogin } from "~/models/user.server";
+import type { User } from "~/models/user.server";
+import { getAllUsersSimple, verifyLogin } from "~/models/user.server";
 import { createUserSession, getUserId } from "~/session.server";
 import { safeRedirect } from "~/utils";
 import { UserSelector } from "~/components/UserSelector";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
   if (userId) return redirect("/");
-  const allUsers = await getAllUsers();
+  const allUsers = await getAllUsersSimple();
   return json({ allUsers });
 }
 
@@ -76,6 +77,11 @@ export default function LoginPage() {
   const actionData = useActionData<typeof action>();
   const loaderData = useLoaderData<typeof loader>();
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [selectedUser, setSelectedUser] = useState<Pick<
+    User,
+    "name" | "imgSrc"
+  > | null>(null);
+
   useEffect(() => {
     if (actionData?.errors?.password) {
       passwordRef.current?.focus();
@@ -87,7 +93,12 @@ export default function LoginPage() {
       <Form method="post" className="space-y-6" noValidate>
         <div className="grid gap-4">
           <h1 className="font-heading text-5xl sm:text-7xl">Logg inn</h1>
-          <UserSelector name="name" allUsers={loaderData.allUsers} />
+          <UserSelector
+            name="name"
+            selectedUser={selectedUser}
+            setSelectedUser={setSelectedUser}
+            allUsers={loaderData.allUsers}
+          />
           <Input
             id="password"
             label="Passord"

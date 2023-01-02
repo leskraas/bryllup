@@ -9,13 +9,13 @@ import { MainLayout } from "~/components/layout/MainLayout";
 import { AdminUserListElement } from "~/components/AdminUserListElement";
 import {
   createUser,
-  getAllUsersAndPassword,
+  getAllUsersRsvpPassword,
   updateUser,
 } from "~/models/user.server";
 import {} from "~/session.server";
 
 export async function loader({ request }: LoaderArgs) {
-  const allUsers = await getAllUsersAndPassword();
+  const allUsers = await getAllUsersRsvpPassword();
   return json({ allUsers });
 }
 

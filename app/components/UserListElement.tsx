@@ -17,7 +17,6 @@ export function UserListElement({ user }: UserListElementProps): JSX.Element {
         />
       )}
       <span className="place-self-start font-bold">{name}</span>
-      {/* <span>{password}</span> */}
       <span>{role}</span>
     </p>
   );

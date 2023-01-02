@@ -6,32 +6,36 @@ import { prisma } from "~/db.server";
 export type { User } from "@prisma/client";
 
 export async function getUserById(id: User["id"]) {
-  return prisma.user.findUnique({ where: { id } });
-}
-export async function getRsvpById(id: User["id"]) {
-  return prisma.rsvp.findMany({
-    where: {
-      submitter: {
-        id,
-      },
-    },
+  return prisma.user.findUnique({
+    where: { id },
     include: {
-      attender: {
-        select: {
-          imgSrc: true,
-        },
-      },
+      rsvp: true,
     },
   });
 }
 
-export async function getAllUsers() {
-  return prisma.user.findMany({ select: { name: true, imgSrc: true } });
+export async function getAllUsersSimple() {
+  return prisma.user.findMany({
+    select: { name: true, imgSrc: true },
+    orderBy: { name: "asc" },
+  });
 }
 
-export async function getAllUsersAndPassword() {
+export async function getAllUsers() {
   return prisma.user.findMany({
-    include: { password: true },
+    include: { rsvp: true },
+    orderBy: { name: "asc" },
+  });
+}
+
+export async function getAllUsersRsvpPassword() {
+  return prisma.user.findMany({
+    orderBy: {
+      password: {
+        password: "asc",
+      },
+    },
+    include: { password: true, rsvp: true },
   });
 }
 

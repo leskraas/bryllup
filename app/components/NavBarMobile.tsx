@@ -19,7 +19,7 @@ export function NavBarMobile({ user }: Props): JSX.Element {
           ))}
         </div>
       </div>
-      <div className="fixed top-2 right-2">
+      <div className="fixed top-2 right-2 z-50">
         <ProfileLoginLogout user={user} />
       </div>
     </nav>

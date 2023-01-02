@@ -1,24 +1,29 @@
 import { Combobox, Transition } from "@headlessui/react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/24/outline";
 import type { User } from "@prisma/client";
-
-import React, { useRef, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import React, { useState } from "react";
+import { ProfileImage } from "./ProfileImage";
 
 type UserSelectorProps = {
   allUsers: Pick<User, "name" | "imgSrc">[];
   name: string;
   className?: string;
+  selectedUser: Pick<User, "name" | "imgSrc"> | null;
+  setSelectedUser: Dispatch<
+    SetStateAction<Pick<User, "name" | "imgSrc"> | null>
+  >;
 };
 
 export function UserSelector({
   allUsers,
   name,
+  selectedUser,
+  setSelectedUser,
   className,
 }: UserSelectorProps): JSX.Element {
-  const [selected, setSelected] = useState<Pick<User, "name" | "imgSrc">>();
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [query, setQuery] = useState("");
-
   const filteredPeople =
     query === ""
       ? allUsers
@@ -26,10 +31,10 @@ export function UserSelector({
           return person.name.toLowerCase().includes(query.toLowerCase());
         });
 
-  const personPreview = query ? filteredPeople[0] : selected;
+  const personPreview = query ? filteredPeople[0] : selectedUser;
   return (
     <div className={className}>
-      <Combobox value={selected} onChange={setSelected}>
+      <Combobox value={selectedUser} onChange={setSelectedUser}>
         {({ open }) => (
           <div className="relative mt-1">
             <Combobox.Label className="text-md block font-medium text-slate-900">
@@ -46,10 +51,9 @@ export function UserSelector({
               />
               {personPreview?.imgSrc && (
                 <div className="absolute inset-y-0 left-0 flex items-center px-3">
-                  <img
-                    src={personPreview.imgSrc}
-                    alt={personPreview.name}
-                    className="h-5 w-5 rounded-full object-cover"
+                  <ProfileImage
+                    imgSrc={personPreview.imgSrc}
+                    name={personPreview.name}
                   />
                 </div>
               )}
@@ -86,10 +90,9 @@ export function UserSelector({
                     >
                       {({ selected, active }) => (
                         <>
-                          <img
-                            src={person?.imgSrc || ""}
-                            alt={person.name}
-                            className="h-5 w-5 rounded-full object-cover"
+                          <ProfileImage
+                            imgSrc={person?.imgSrc || ""}
+                            name={person.name}
                           />
                           <span
                             className={`block truncate ${

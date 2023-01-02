@@ -1,46 +1,7 @@
-import type { ActionArgs, LoaderArgs } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import {
-  Form,
-  NavLink,
-  Outlet,
-  useCatch,
-  useLoaderData,
-} from "@remix-run/react";
-import invariant from "tiny-invariant";
-import Image, { MimeType } from "remix-image";
+import Image from "remix-image";
 import dayjs from "dayjs";
-// import { requireUserId } from "~/session.server";
-import LogLHjem from "/images/LogLHjem.png";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLink } from "~/components/ArrowButton";
-import { motion } from "framer-motion";
-
-export async function loader({ request, params }: LoaderArgs) {
-  // const userId = await requireUserId(request);
-  // invariant(params.noteId, "noteId not found");
-
-  // const note = await getNote({ userId, id: params.noteId });
-  // if (!note) {
-  //   throw new Response("Not Found", { status: 404 });
-  // }
-  return json({ hei: "hei" });
-}
-
-const draw = {
-  hidden: { pathLength: 0, opacity: 0 },
-  visible: (i: number) => {
-    const delay = 1 + i * 0.5;
-    return {
-      pathLength: 1,
-      opacity: 1,
-      transition: {
-        pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
-        opacity: { delay, duration: 0.01 },
-      },
-    };
-  },
-};
 
 function getCountDown(fromDate: dayjs.Dayjs) {
   return dayjs.duration(dayjs("2023-09-19").diff(fromDate));
@@ -58,8 +19,6 @@ export default function Index() {
       clearTimeout(timer);
     };
   }, [countDown]);
-
-  // style={{stroke:"#000",strokeWidth:"0.25mm",fill:"#000"}}
 
   return (
     <main>
@@ -83,7 +42,9 @@ export default function Index() {
           </div>
         </div>
         <div className=" flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-slate-900">
-          <h2 className="text-4xl font-light sm:text-5xl">Grønolen Fjellgard</h2>
+          <h2 className="text-4xl font-light sm:text-5xl">
+            Grønolen Fjellgard
+          </h2>
           <h3>18-20 August 2022</h3>
           <p className="flex gap-2">
             <span>{Math.floor(countDown.asDays())} dager</span>
