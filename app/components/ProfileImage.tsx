@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import type { ImgHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 type ProfileImageProps = {
   name: string;
@@ -17,7 +17,7 @@ export function ProfileImage({
       src={imgSrc}
       alt={""}
       aria-label={name}
-      className={clsx("h-5 w-5 rounded-full object-cover", className)}
+      className={twMerge("h-7 w-7 rounded-full object-cover", className)}
       {...rest}
     />
   );

@@ -28,7 +28,7 @@ export default function Index() {
         </div>
         <div>
           <img
-            src="./images/gronolen_fjellgard.jpeg"
+            src="./images/gronolen_fjellgard.jpg"
             alt="Grønolen fjellgard"
             className="object-cover"
           />

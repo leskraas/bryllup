@@ -27,7 +27,7 @@ export default function Index() {
           <Image
             loaderUrl="/api/image"
             className="h-full w-full object-cover opacity-50"
-            src="./images/initImage.jpg"
+            src="./images/initImage2.jpg"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
           />

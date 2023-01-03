@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 type RadioButtonProps = {
   name: string;
@@ -16,7 +16,7 @@ export function RadioButton({
   ...rest
 }: RadioButtonProps): JSX.Element {
   return (
-    <div className={clsx("flex items-center", className)}>
+    <div className={twMerge("flex items-center", className)}>
       <input
         type="radio"
         id={id}

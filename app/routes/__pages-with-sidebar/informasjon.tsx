@@ -43,17 +43,20 @@ export default function Index() {
             <h2 className="mb-4 text-3xl font-extralight">Forlovere </h2>
             <div className="flex flex-wrap">
               <PresentPerson
-                imgSrc="./images/kristine.jpeg"
+                bgSrc="./images/kristine_cleanup.jpg"
+                mainSrc="./images/kristine-removebg.png"
                 name="Kristine"
                 text=""
               />
               <PresentPerson
-                imgSrc="./images/kristoffer.jpg"
+                mainSrc="./images/kristoffer-removebg.png"
+                bgSrc="./images/kristoffer_cleanup.jpg"
                 name="Kristoffer"
                 text="Kristoffer er en av Lars Erik sine forlovere. De er barndomsvenner og har kjent hverandre siden barnehagen"
               />
               <PresentPerson
-                imgSrc="./images/magnus.jpg"
+                mainSrc="./images/magnus-removebg.png"
+                bgSrc="./images/magnus_cleanup.jpg"
                 name="Magnus"
                 text="Magnus er en av Lars Erik sine forlovere. De er barndomsvenner og har kjent hverandre siden barnehagen"
               />
@@ -62,7 +65,8 @@ export default function Index() {
           <div>
             <h2 className="mb-4 text-3xl font-light">Toastmaster</h2>
             <PresentPerson
-              imgSrc="./images/torjus.jpg"
+              bgSrc="./images/torjus_cleanup.jpg"
+              mainSrc="./images/torjus-removebg.png"
               name="Torjus"
               text="torjus"
             />

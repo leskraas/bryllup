@@ -1,6 +1,6 @@
-import clsx from "clsx";
 import type { ForwardedRef } from "react";
 import React, { forwardRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 type InputProps = {
   name: string;
@@ -39,11 +39,9 @@ export const Input = forwardRef(function Input(
         ref={ref}
         aria-invalid={errorMessage ? true : undefined}
         aria-describedby={`${id}-error`}
-        className={clsx(
+        className={twMerge(
           "sm:text-md mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500",
-          {
-            "mt-auto h-5 w-5": isCheckbox,
-          },
+          isCheckbox && "mt-auto h-5 w-5",
           classNameInput
         )}
         {...rest}

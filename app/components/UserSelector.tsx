@@ -54,6 +54,7 @@ export function UserSelector({
                   <ProfileImage
                     imgSrc={personPreview.imgSrc}
                     name={personPreview.name}
+                    className="h-5 w-5"
                   />
                 </div>
               )}
@@ -93,6 +94,7 @@ export function UserSelector({
                           <ProfileImage
                             imgSrc={person?.imgSrc || ""}
                             name={person.name}
+                            className="h-6 w-6"
                           />
                           <span
                             className={`block truncate ${

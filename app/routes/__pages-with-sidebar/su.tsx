@@ -323,20 +323,22 @@ export default function Rsvp(): JSX.Element {
         </Form>
         <div>
           {rsvpLoggedInUser && rsvpLoggedInUser.length > 0 && (
-            <div className="mb-6 grid gap-3">
-              <h3 className="text-2xl font-thin">Dine innsendte svar: </h3>
+            <div className="mb-6 grid gap-5">
+              <h3 className="text-2xl font-thin sm:text-3xl">
+                Dine innsendte svar:{" "}
+              </h3>
               {rsvpLoggedInUser?.map((rsvp) => (
                 <div
                   key={`rsvp-${rsvp.attenderName}-${rsvp.submitterName}`}
-                  className="grid gap-2"
+                  className="grid gap-1"
                 >
-                  <div className="grid grid-cols-11">
+                  <div className="grid grid-cols-11 gap-1">
                     <ProfileImage
                       imgSrc={rsvp.attender.imgSrc || ""}
                       name={rsvp.attenderName}
                       className="self-center"
                     />
-                    <span className="col-span-5 font-bold">
+                    <span className="col-span-5 font-bold text-slate-900">
                       {rsvp.attenderName}
                     </span>
                     <span className="col-span-5">
@@ -348,20 +350,22 @@ export default function Rsvp(): JSX.Element {
               ))}
             </div>
           )}
-          <div className="grid gap-3">
-            <h3 className="text-2xl font-thin">Gjesteliste: </h3>
+          <div className="grid gap-5">
+            <h3 className="text-2xl font-thin sm:text-3xl">Gjesteliste: </h3>
             {!isLoggedIn && (
               <p>Gjestelisten er kun tilgjengelig når du er logget inn.</p>
             )}
             {allUsers?.map((user) => (
               <div key={`rsvp-${user.name}-all`}>
-                <div className="grid grid-cols-11">
+                <div className="grid grid-cols-11 gap-1">
                   <ProfileImage
                     imgSrc={user.imgSrc || ""}
                     name={user.name}
                     className="self-center"
                   />
-                  <span className="col-span-5 font-bold">{user.name}</span>
+                  <span className="col-span-5 font-bold text-slate-900">
+                    {user.name}
+                  </span>
                   <span
                     className={clsx(
                       "col-span-5",
