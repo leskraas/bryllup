@@ -34,7 +34,13 @@ export function UserSelector({
   const personPreview = query ? filteredPeople[0] : selectedUser;
   return (
     <div className={className}>
-      <Combobox value={selectedUser} onChange={setSelectedUser}>
+      <Combobox
+        value={selectedUser}
+        onChange={(user) => {
+          setSelectedUser(user);
+          setIsInputFocused(false);
+        }}
+      >
         {({ open }) => (
           <div className="relative mt-1">
             <Combobox.Label className="text-md block font-medium text-slate-900">
@@ -58,20 +64,17 @@ export function UserSelector({
                   />
                 </div>
               )}
-              <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                <ChevronUpDownIcon
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-              </Combobox.Button>
             </div>
             <Transition
               as={React.Fragment}
-              leave="transition ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+              enter="transition ease-in duration-150 origin-top"
+              enterFrom="opacity-0 scale-y-50"
+              enterTo="opacity-100 scale-y-100"
+              leave="transition ease-in duration-150 origin-top"
+              leaveFrom="opacity-100 scale-y-100"
+              leaveTo="opacity-0 scale-y-50"
               afterLeave={() => setQuery("")}
-              show={open || isInputFocused}
+              show={open || (!open && !query && isInputFocused)}
             >
               <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {filteredPeople.length === 0 && query !== "" ? (
@@ -79,11 +82,12 @@ export function UserSelector({
                     Fant ingen.
                   </div>
                 ) : (
-                  filteredPeople.map((person) => (
+                  filteredPeople.map((person, i) => (
                     <Combobox.Option
                       key={person.name}
+                      onFocus={() => setIsInputFocused(true)}
                       className={({ active }) =>
-                        `relative flex cursor-default select-none gap-4 py-2 px-3 ${
+                        `relative flex cursor-default select-none items-center gap-4 py-2 px-3 ${
                           active ? "bg-blue-600 text-white" : "text-gray-900"
                         }`
                       }
