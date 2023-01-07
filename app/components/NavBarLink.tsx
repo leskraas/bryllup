@@ -14,6 +14,7 @@ export function NavBarLink({
 }: NavBarLinkProps): JSX.Element {
   return (
     <NavLink
+      prefetch="intent"
       className={({ isActive }) =>
         clsx(
           "m-auto inline-flex h-full flex-1 flex-col items-center justify-center gap-1 text-xs transition-opacity duration-300 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 sm:h-auto sm:w-full sm:flex-row sm:justify-start sm:rounded-lg sm:p-2 sm:text-base",
