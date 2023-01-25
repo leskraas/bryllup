@@ -4,6 +4,7 @@ import type { User } from "@prisma/client";
 import { Form, useLocation } from "@remix-run/react";
 import clsx from "clsx";
 import { Fragment } from "react";
+import { ProfileImage } from "./ProfileImage";
 
 type LoginLogoutProps = {
   user: User;
@@ -49,9 +50,9 @@ export function ProfileLogout({ user }: LoginLogoutProps): JSX.Element {
         </Form>
       </Transition>
       <Menu.Button className="flex items-center gap-3 text-left">
-        <img
-          src={user?.imgSrc || ""}
-          alt={user.name}
+        <ProfileImage
+          fileName={user?.imgSrc || ""}
+          name={user.name}
           className={clsx(
             "h-10 w-10 rounded-full object-cover shadow-lg sm:h-7 sm:w-7 sm:shadow-none"
           )}

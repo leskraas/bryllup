@@ -15,7 +15,7 @@ export function AdminUserListElement({
     <p className="relative grid grid-cols-3 justify-items-center gap-2 pl-10">
       {imgSrc && (
         <ProfileImage
-          imgSrc={imgSrc}
+          fileName={imgSrc}
           name={name}
           className="absolute left-0 top-1/2 h-8 w-8 -translate-y-1/2"
         />

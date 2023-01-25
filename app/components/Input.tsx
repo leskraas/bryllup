@@ -3,7 +3,7 @@ import React, { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 type InputProps = {
-  name: string;
+  name?: string;
   label: string;
   id: string;
   className?: string;

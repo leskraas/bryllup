@@ -58,7 +58,7 @@ export function UserSelector({
               {personPreview?.imgSrc && (
                 <div className="absolute inset-y-0 left-0 flex items-center px-3">
                   <ProfileImage
-                    imgSrc={personPreview.imgSrc}
+                    fileName={personPreview.imgSrc}
                     name={personPreview.name}
                     className="h-5 w-5"
                   />
@@ -96,9 +96,10 @@ export function UserSelector({
                       {({ selected, active }) => (
                         <>
                           <ProfileImage
-                            imgSrc={person?.imgSrc || ""}
+                            fileName={person?.imgSrc || ""}
                             name={person.name}
                             className="h-6 w-6"
+                            loading="lazy"
                           />
                           <span
                             className={`block truncate ${

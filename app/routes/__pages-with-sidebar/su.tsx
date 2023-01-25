@@ -186,14 +186,14 @@ export default function Rsvp(): JSX.Element {
     const allergiesRsvpLoggedInUser = rsvpLoggedInUser?.find(
       (e) => e.attenderName === selectedUser?.name
     )?.allergies;
-    const allergiesDefaultValue = allergiesRsvpLoggedInUser
-      ? allergiesRsvpLoggedInUser
+    const allergiesDefaultValue = allergiesRsvpLoggedInUser?.length
+      ? allergiesRsvpLoggedInUser[allergiesRsvpLoggedInUser.length - 1]
       : loggedInUser?.name === selectedUser?.name &&
         loggedInUser?.rsvp?.allergies?.length
-      ? loggedInUser.rsvp.allergies
+      ? loggedInUser.rsvp.allergies[loggedInUser.rsvp.allergies.length - 1]
       : "";
     if (formRef.current) {
-      formRef.current.value = allergiesDefaultValue;
+      formRef.current.value = allergiesDefaultValue || "";
     }
   }, [
     loggedInUser?.name,
@@ -300,7 +300,9 @@ export default function Rsvp(): JSX.Element {
                   defaultValue={
                     loggedInUser?.name === selectedUser?.name &&
                     loggedInUser?.rsvp?.allergies?.length
-                      ? loggedInUser.rsvp.allergies
+                      ? loggedInUser.rsvp.allergies[
+                          loggedInUser.rsvp.allergies.length - 1
+                        ]
                       : ""
                   }
                   description="Informasjon som kan være nyttig for arrangøren å vite. Svaret ditt vil kun være tilgjengelig for administrator."
@@ -334,7 +336,7 @@ export default function Rsvp(): JSX.Element {
                 >
                   <div className="grid grid-cols-11 gap-1">
                     <ProfileImage
-                      imgSrc={rsvp.attender.imgSrc || ""}
+                      fileName={rsvp.attender.imgSrc || ""}
                       name={rsvp.attenderName}
                       className="self-center"
                     />
@@ -345,7 +347,11 @@ export default function Rsvp(): JSX.Element {
                       {attendLabel[rsvp.attend]}
                     </span>
                   </div>
-                  {rsvp.allergies && <span>{rsvp.allergies}</span>}
+                  <div>
+                    {rsvp.allergies.length
+                      ? rsvp.allergies[rsvp.allergies.length - 1]
+                      : null}
+                  </div>
                 </div>
               ))}
             </div>
@@ -359,7 +365,7 @@ export default function Rsvp(): JSX.Element {
               <div key={`rsvp-${user.name}-all`}>
                 <div className="grid grid-cols-11 gap-1">
                   <ProfileImage
-                    imgSrc={user.imgSrc || ""}
+                    fileName={user.imgSrc || ""}
                     name={user.name}
                     className="self-center"
                   />

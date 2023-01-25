@@ -39,7 +39,6 @@ export async function action({ request }: ActionArgs) {
       { status: 400 }
     );
   }
-  console.log({ name, password, imgSrc, role, id });
 
   try {
     if (addUserSubmit === "add-user") {
@@ -107,6 +106,7 @@ export default function Admin(): JSX.Element {
                       />
                     </div>
                     <Button
+                      type="button"
                       onClick={() => setEditUserId(user.id)}
                       variant="tertiary"
                     >
@@ -144,7 +144,11 @@ export default function Admin(): JSX.Element {
                   {user.rsvp?.attend ? user.rsvp.attend : "Har ikke svart"}
                 </div>
                 <div>{user.rsvp?.submitterName}</div>
-                <div>{user.rsvp?.allergies}</div>
+                <div>
+                  {user.rsvp?.allergies.map((comment) => (
+                    <div key={comment}>{comment}</div>
+                  ))}
+                </div>
               </Fragment>
             ))}
           </div>

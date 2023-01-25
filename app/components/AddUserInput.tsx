@@ -71,7 +71,7 @@ export function AddUserInput({
           defaultChecked={user?.role === "ADMIN"}
           type="checkbox"
           classNameInput="m-auto"
-          className="flex w-[10ch] flex-col items-center"
+          className="flex w-[10ch] flex-col items-center text-center"
         />
       </div>
       <div className="flex gap-2">
