@@ -56,7 +56,6 @@ export async function createRsvp({
       },
     })
   )?.rsvp?.allergies;
-  console.log({ previousAllergies });
   const isAllergiesResponseDuplicate = previousAllergies
     ? previousAllergies[previousAllergies.length - 1] === allergies
     : false;
@@ -93,4 +92,8 @@ export async function createRsvp({
       name: attenderName,
     },
   });
+}
+
+export async function deleteAllRsvp() {
+  return prisma.rsvp.deleteMany();
 }

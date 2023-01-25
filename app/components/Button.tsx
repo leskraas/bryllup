@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 type ButtonProps = {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "tertiary" | "danger";
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function Button({
@@ -21,6 +21,7 @@ export function Button({
           "border-2 border-slate-900 bg-inherit text-slate-900 hover:text-white",
         variant === "tertiary" &&
           "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
+        variant === "danger" && " bg-red-600 text-white hover:bg-red-800",
         className
       )}
       {...rest}

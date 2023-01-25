@@ -166,7 +166,7 @@ export default function Rsvp(): JSX.Element {
   const { allUsers, isLoggedIn, loggedInUser, rsvpLoggedInUser, allRsvp } =
     useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
-  const formRef = useRef<HTMLTextAreaElement>(null);
+  const allergiesRef = useRef<HTMLTextAreaElement>(null);
   const [selectedUser, setSelectedUser] = useState(
     loggedInUser
       ? {
@@ -192,8 +192,8 @@ export default function Rsvp(): JSX.Element {
         loggedInUser?.rsvp?.allergies?.length
       ? loggedInUser.rsvp.allergies[loggedInUser.rsvp.allergies.length - 1]
       : "";
-    if (formRef.current) {
-      formRef.current.value = allergiesDefaultValue || "";
+    if (allergiesRef.current) {
+      allergiesRef.current.value = allergiesDefaultValue || "";
     }
   }, [
     loggedInUser?.name,
@@ -296,7 +296,7 @@ export default function Rsvp(): JSX.Element {
                   id="allergies"
                   autoComplete="allergies"
                   label="Kommentar/Allergier"
-                  ref={formRef}
+                  ref={allergiesRef}
                   defaultValue={
                     loggedInUser?.name === selectedUser?.name &&
                     loggedInUser?.rsvp?.allergies?.length

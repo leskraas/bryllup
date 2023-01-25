@@ -11,6 +11,8 @@ import { createUser, updateUser } from "~/models/user.server";
 import { getAllUsersAdmin, requireAdminUser } from "~/session.server";
 import clsx from "clsx";
 import { Attend } from "@prisma/client";
+import { Card } from "~/components/Card";
+import { deleteAllRsvp } from "~/models/rsvp.server";
 
 export async function loader({ request }: LoaderArgs) {
   await requireAdminUser(request);
@@ -20,8 +22,18 @@ export async function loader({ request }: LoaderArgs) {
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
-  const addUserSubmit = formData.get("_action");
+  const submitAction = formData.get("_action");
   const name = formData.get("name");
+
+  if (submitAction === "delete-all-rsvp") {
+    try {
+      await deleteAllRsvp();
+      return json({ errors: { password: null, name: null } }, { status: 200 });
+    } catch {
+      return json({ errors: { password: null, name: null } }, { status: 400 });
+    }
+  }
+
   const id = formData.get("id");
   const password = formData.get("password");
   const role = formData.get("role") === "ADMIN" ? "ADMIN" : "GUEST";
@@ -41,11 +53,11 @@ export async function action({ request }: ActionArgs) {
   }
 
   try {
-    if (addUserSubmit === "add-user") {
+    if (submitAction === "add-user") {
       await createUser({ name, imgSrc, role }, password);
     }
 
-    if (addUserSubmit === "edit-user") {
+    if (submitAction === "edit-user") {
       if (typeof id !== "string" || id.length === 0) {
         return json(
           { errors: { password: null, name: null, id: "Mangler id" } },
@@ -153,6 +165,12 @@ export default function Admin(): JSX.Element {
             ))}
           </div>
         </div>
+        <Card title="Faresone" className="mt-10 bg-red-100 text-red-900">
+          <p className="pb-4">Vær forsiktig med her!</p>
+          <Button variant="danger" name="_action" value="delete-all-rsvp">
+            Slett alle svar
+          </Button>
+        </Card>
       </Form>
     </MainLayout>
   );
