@@ -25,11 +25,11 @@ model Password {
 
 model Rsvp {
   attend        Attend
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime? @default(now()) @updatedAt
-  submitter     User      @relation(fields: [submitterName], references: [name], name: "submittedPsvp", onDelete: Cascade, onUpdate: Cascade)
-  attender      User      @relation(fields: [attenderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
-  attenderName  String    @unique
+  // createdAt     DateTime? @default(now())
+  // updatedAt     DateTime? @default(now()) @updatedAt
+  submitter     User     @relation(fields: [submitterName], references: [name], name: "submittedPsvp", onDelete: Cascade, onUpdate: Cascade)
+  attender      User     @relation(fields: [attenderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+  attenderName  String   @unique
   submitterName String
   allergies     String[]
 }
