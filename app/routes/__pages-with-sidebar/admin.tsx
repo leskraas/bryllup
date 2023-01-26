@@ -157,9 +157,9 @@ export default function Admin(): JSX.Element {
                 </div>
                 <div>{user.rsvp?.submitterName}</div>
                 <div>
-                  {user.rsvp?.allergies.map((comment) => (
+                  {/* {user.rsvp?.allergies.map((comment) => (
                     <div key={comment}>{comment}</div>
-                  ))}
+                  ))} */}
                 </div>
               </Fragment>
             ))}

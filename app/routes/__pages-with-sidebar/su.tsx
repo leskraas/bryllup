@@ -348,7 +348,7 @@ export default function Rsvp(): JSX.Element {
                     </span>
                   </div>
                   <div>
-                    {rsvp.allergies.length
+                    {rsvp.allergies?.length
                       ? rsvp.allergies[rsvp.allergies.length - 1]
                       : null}
                   </div>

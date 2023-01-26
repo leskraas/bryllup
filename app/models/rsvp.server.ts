@@ -76,7 +76,7 @@ export async function createRsvp({
           update: {
             ...rest,
             allergies: {
-              push: isAllergiesResponseDuplicate ? undefined : allergies,
+              // push: isAllergiesResponseDuplicate ? undefined : allergies,
               set: isAllergiesResponseDuplicate ? previousAllergies : undefined,
             },
             submitter: {
