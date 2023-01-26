@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Rsvp" ALTER COLUMN "allergies" SET NOT NULL,
-ALTER COLUMN "allergies" SET DATA TYPE TEXT;
