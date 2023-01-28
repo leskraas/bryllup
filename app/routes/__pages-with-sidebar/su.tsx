@@ -119,6 +119,7 @@ export async function action({ request }: ActionArgs) {
           email: null,
           attend: null,
           other: null,
+          name: null,
         },
       },
       { status: 200 }
@@ -133,6 +134,7 @@ export async function action({ request }: ActionArgs) {
           email: null,
           attend: null,
           other: null,
+          name: null,
         },
       },
       { status: 400 }
@@ -216,6 +218,7 @@ export default function Rsvp(): JSX.Element {
                   selectedUser={selectedUser}
                   setSelectedUser={setSelectedUser}
                   allUsers={allUsers}
+                  errorMessage={actionData?.errors.name}
                 />
                 {isSubmittingForAnotherUser && (
                   <div className="col-span-6 rounded-lg bg-blue-50 p-4">

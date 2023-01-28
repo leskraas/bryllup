@@ -104,8 +104,10 @@ export async function updateUser(
   });
 }
 
-export async function deleteUserByEmail(name: User["name"]) {
-  return prisma.user.delete({ where: { name } });
+export async function deleteUserById(id: User["id"]) {
+  console.log(id);
+
+  return prisma.user.delete({ where: { id } });
 }
 
 export async function verifyLogin(

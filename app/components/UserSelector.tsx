@@ -1,5 +1,5 @@
 import { Combobox, Transition } from "@headlessui/react";
-import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import type { User } from "@prisma/client";
 import type { Dispatch, SetStateAction } from "react";
 import React, { useState } from "react";
@@ -13,6 +13,8 @@ type UserSelectorProps = {
   setSelectedUser: Dispatch<
     SetStateAction<Pick<User, "name" | "imgSrc"> | null>
   >;
+
+  errorMessage?: string | null;
 };
 
 export function UserSelector({
@@ -21,6 +23,7 @@ export function UserSelector({
   selectedUser,
   setSelectedUser,
   className,
+  errorMessage,
 }: UserSelectorProps): JSX.Element {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [query, setQuery] = useState("");
@@ -55,15 +58,17 @@ export function UserSelector({
                 displayValue={(person?: User) => person?.name || ""}
                 onChange={(event) => setQuery(event.target.value)}
               />
-              {personPreview?.imgSrc && (
-                <div className="absolute inset-y-0 left-0 flex items-center px-3">
+              <div className="absolute inset-y-0 left-0 flex items-center px-3">
+                {personPreview?.imgSrc ? (
                   <ProfileImage
                     fileName={personPreview.imgSrc}
                     name={personPreview.name}
                     className="h-5 w-5"
                   />
-                </div>
-              )}
+                ) : (
+                  <MagnifyingGlassIcon className="h-5 w-5" />
+                )}
+              </div>
             </div>
             <Transition
               as={React.Fragment}
@@ -127,6 +132,14 @@ export function UserSelector({
                 )}
               </Combobox.Options>
             </Transition>
+            {errorMessage && (
+              <p
+                id={`${name}-error`}
+                className="mt-0.5  text-red-600 dark:text-red-500"
+              >
+                {errorMessage}
+              </p>
+            )}
           </div>
         )}
       </Combobox>

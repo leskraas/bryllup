@@ -1,15 +1,17 @@
 import type { Password, User } from "@prisma/client";
-import { useActionData } from "@remix-run/react";
+
 import type { BaseSyntheticEvent } from "react";
+import { useEffect, useState } from "react";
 import { v4 } from "uuid";
-import type { action } from "~/routes/__pages-with-sidebar/admin";
 import { Button } from "./Button";
+import { useIsSubmissionSuccess } from "./hooks/useIsSubmissionSuccess";
 import { Input } from "./Input";
 
 type AddUserInputProps = {
   user?: User;
   password?: Password["password"];
   onCancel?: (e?: BaseSyntheticEvent) => void;
+  enableAutoFocus?: boolean;
 };
 
 function randomIntFromInterval(max: number) {
@@ -32,9 +34,16 @@ export function AddUserInput({
   user,
   password,
   onCancel,
+  enableAutoFocus,
 }: AddUserInputProps): JSX.Element {
-  const actionData = useActionData<typeof action>();
-  const randomPassword = getPassword();
+  const [randomPassword, setRandomPassword] = useState(getPassword());
+  const { isSubmissionSuccess, actionData } = useIsSubmissionSuccess();
+
+  useEffect(() => {
+    if (isSubmissionSuccess) {
+      setRandomPassword(getPassword());
+    }
+  }, [isSubmissionSuccess]);
 
   return (
     <fieldset className="grid justify-items-start gap-4">
@@ -53,6 +62,7 @@ export function AddUserInput({
             name="name"
             defaultValue={user?.name}
             errorMessage={actionData?.errors.name || ""}
+            autoFocus={enableAutoFocus}
           />
 
           <Input

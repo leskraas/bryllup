@@ -72,26 +72,26 @@ export function PresentPerson({
   name,
   text,
 }: PresentPersonProps): JSX.Element {
-  const [isSelected, setIsSelected] = useState(false);
-  const contentRef = useRef(null);
-  const contentHight = useDimensions(contentRef).height;
+  // const [isSelected, setIsSelected] = useState(false);
+  // const contentRef = useRef(null);
+  // const contentHight = useDimensions(contentRef).height;
   return (
     <motion.button
-      onClick={() => setIsSelected((prevState) => !prevState)}
+      // onClick={() => setIsSelected((prevState) => !prevState)}
       whileHover={"hover"}
-      onHoverEnd={() => setIsSelected(false)}
+      // onHoverEnd={() => setIsSelected(false)}
       className={twMerge(
-        "group relative grid w-full max-w-[200px] place-items-center overflow-visible rounded-lg duration-200",
-        isSelected && "z-20"
+        "group relative grid w-full max-w-[200px] place-items-center overflow-visible rounded-lg duration-200"
+        // isSelected && "z-20"
       )}
       initial={false}
-      animate={isSelected ? "open" : "closed"}
+      // animate={isSelected ? "open" : "closed"}
     >
       <div className="z-10">
         <PopupImage bgSrc={bgSrc} mainSrc={mainSrc} alt={name} />
         <h4 className="text-lg font-bold">{name}</h4>
       </div>
-      <motion.div
+      {/* <motion.div
         className="absolute inset-0 top-1/2 mt-1 origin-top overflow-hidden rounded-lg bg-white pt-24 shadow"
         variants={content}
         // style={{ height: isSelected ? `calc(${contentHight}px + 6rem)` : 0 }}
@@ -104,7 +104,7 @@ export function PresentPerson({
         <div className="flex" ref={contentRef}>
           {text}
         </div>
-      </motion.div>
+      </motion.div> */}
     </motion.button>
   );
 }
