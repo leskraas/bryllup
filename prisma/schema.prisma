@@ -13,7 +13,7 @@ model User {
   name          String    @unique
   imgSrc        String?
   role          Role      @default(GUEST)
-  rsvp          Rsvp?
+  rsvps         Rsvp[]
   submittedRsvp Rsvp[]    @relation(name: "submittedPsvp")
 }
 
@@ -24,12 +24,14 @@ model Password {
 }
 
 model Rsvp {
-  attend        Attend
-  submitter     User    @relation(fields: [submitterName], references: [name], name: "submittedPsvp", onDelete: Cascade, onUpdate: Cascade)
-  attender      User    @relation(fields: [attenderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
-  attenderName  String  @unique
-  submitterName String
-  allergies     String?
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
+  attend         Attend
+  submitter      User     @relation(fields: [submitterName], references: [name], name: "submittedPsvp", onDelete: Cascade, onUpdate: Cascade)
+  attender       User     @relation(fields: [attenderName], references: [name], onDelete: Cascade, onUpdate: Cascade)
+  attenderName   String
+  submitterName  String
+  additionalInfo String?
 }
 
 enum Attend {

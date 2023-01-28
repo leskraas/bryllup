@@ -9,7 +9,11 @@ export async function getUserById(id: User["id"]) {
   return prisma.user.findUnique({
     where: { id },
     include: {
-      rsvp: true,
+      rsvps: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
 }
@@ -23,7 +27,13 @@ export async function getAllUsersSimple() {
 
 export async function getAllUsers() {
   return prisma.user.findMany({
-    include: { rsvp: true },
+    include: {
+      rsvps: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
     orderBy: { name: "asc" },
   });
 }
@@ -35,7 +45,14 @@ export async function getAllUsersRsvpPassword() {
         password: "asc",
       },
     },
-    include: { password: true, rsvp: true },
+    include: {
+      password: true,
+      rsvps: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
   });
 }
 

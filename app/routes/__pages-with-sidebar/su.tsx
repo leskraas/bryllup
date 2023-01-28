@@ -61,7 +61,7 @@ export async function action({ request }: ActionArgs) {
   const name = htmlFormData.get("name");
   const password = htmlFormData.get("password");
   const attend = htmlFormData.get("attend");
-  const allergies = htmlFormData.get("allergies");
+  const additionalInfo = htmlFormData.get("additionalInfo");
 
   if (!isStringAndExist(name)) {
     return json(
@@ -77,7 +77,7 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
-  if (typeof allergies !== "string") {
+  if (typeof additionalInfo !== "string") {
     return json(
       {
         errors: {
@@ -107,7 +107,7 @@ export async function action({ request }: ActionArgs) {
 
   if (isSubmitterLoggedIn) {
     await createRsvp({
-      allergies,
+      additionalInfo,
       attend,
       attenderName: name,
       submitterName: submitter.name,
@@ -166,7 +166,7 @@ export default function Rsvp(): JSX.Element {
   const { allUsers, isLoggedIn, loggedInUser, rsvpLoggedInUser, allRsvp } =
     useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
-  const allergiesRef = useRef<HTMLTextAreaElement>(null);
+  const additionalInfoRef = useRef<HTMLTextAreaElement>(null);
   const [selectedUser, setSelectedUser] = useState(
     loggedInUser
       ? {
@@ -179,28 +179,24 @@ export default function Rsvp(): JSX.Element {
     isLoggedIn && selectedUser?.name !== loggedInUser?.name;
 
   const currentSelectedUserPreviousRsvp = allRsvp?.find(
-    (rsvp) => rsvp.attender.name === selectedUser?.name
+    ({ name }) => name === selectedUser?.name
   );
 
   useEffect(() => {
-    const allergiesRsvpLoggedInUser = rsvpLoggedInUser?.find(
+    const additionalInfoRsvpLoggedInUser = rsvpLoggedInUser?.find(
       (e) => e.attenderName === selectedUser?.name
-    )?.allergies;
-    const allergiesDefaultValue = allergiesRsvpLoggedInUser?.length
-      ? allergiesRsvpLoggedInUser[allergiesRsvpLoggedInUser.length - 1]
-      : loggedInUser?.name === selectedUser?.name &&
-        loggedInUser?.rsvp?.allergies?.length
-      ? loggedInUser.rsvp.allergies[loggedInUser.rsvp.allergies.length - 1]
+    )?.additionalInfo;
+    const additionalInfoDefaultValue = additionalInfoRsvpLoggedInUser?.length
+      ? additionalInfoRsvpLoggedInUser[
+          additionalInfoRsvpLoggedInUser.length - 1
+        ]
+      : loggedInUser?.name === selectedUser?.name && loggedInUser?.rsvps?.length
+      ? loggedInUser.rsvps[loggedInUser.rsvps.length - 1].additionalInfo
       : "";
-    if (allergiesRef.current) {
-      allergiesRef.current.value = allergiesDefaultValue || "";
+    if (additionalInfoRef.current) {
+      additionalInfoRef.current.value = additionalInfoDefaultValue || "";
     }
-  }, [
-    loggedInUser?.name,
-    loggedInUser?.rsvp?.allergies,
-    rsvpLoggedInUser,
-    selectedUser,
-  ]);
+  }, [loggedInUser?.name, loggedInUser?.rsvps, rsvpLoggedInUser, selectedUser]);
 
   return (
     <MainLayout heading="Svar utbedes">
@@ -256,7 +252,8 @@ export default function Rsvp(): JSX.Element {
                       name="attend"
                       value={Attend.YES}
                       defaultChecked={
-                        currentSelectedUserPreviousRsvp?.attend === Attend.YES
+                        currentSelectedUserPreviousRsvp?.rsvp?.attend ===
+                        Attend.YES
                       }
                       label={attendLabel[Attend.YES]}
                     />
@@ -265,7 +262,7 @@ export default function Rsvp(): JSX.Element {
                       name="attend"
                       value={Attend.SATURDAY}
                       defaultChecked={
-                        currentSelectedUserPreviousRsvp?.attend ===
+                        currentSelectedUserPreviousRsvp?.rsvp?.attend ===
                         Attend.SATURDAY
                       }
                       label={attendLabel[Attend.SATURDAY]}
@@ -275,7 +272,8 @@ export default function Rsvp(): JSX.Element {
                       name="attend"
                       value={Attend.NO}
                       defaultChecked={
-                        currentSelectedUserPreviousRsvp?.attend === Attend.NO
+                        currentSelectedUserPreviousRsvp?.rsvp?.attend ===
+                        Attend.NO
                       }
                       label={attendLabel[Attend.NO]}
                     />
@@ -292,17 +290,16 @@ export default function Rsvp(): JSX.Element {
 
                 <InputTexterea
                   className="col-span-6 sm:col-span-6"
-                  name="allergies"
-                  id="allergies"
+                  name="additionalInfo"
+                  id="additionalInfo"
                   autoComplete="allergies"
                   label="Kommentar/Allergier"
-                  ref={allergiesRef}
+                  ref={additionalInfoRef}
                   defaultValue={
                     loggedInUser?.name === selectedUser?.name &&
-                    loggedInUser?.rsvp?.allergies?.length
-                      ? loggedInUser.rsvp.allergies[
-                          loggedInUser.rsvp.allergies.length - 1
-                        ]
+                    loggedInUser?.rsvps?.length
+                      ? loggedInUser.rsvps[loggedInUser.rsvps.length - 1]
+                          .additionalInfo || ""
                       : ""
                   }
                   description="Informasjon som kan være nyttig for arrangøren å vite. Svaret ditt vil kun være tilgjengelig for administrator."
@@ -347,11 +344,7 @@ export default function Rsvp(): JSX.Element {
                       {attendLabel[rsvp.attend]}
                     </span>
                   </div>
-                  <div>
-                    {rsvp.allergies?.length
-                      ? rsvp.allergies[rsvp.allergies.length - 1]
-                      : null}
-                  </div>
+                  <div>{rsvp.additionalInfo}</div>
                 </div>
               ))}
             </div>
@@ -361,7 +354,7 @@ export default function Rsvp(): JSX.Element {
             {!isLoggedIn && (
               <p>Gjestelisten er kun tilgjengelig når du er logget inn.</p>
             )}
-            {allUsers?.map((user) => (
+            {allRsvp?.map((user) => (
               <div key={`rsvp-${user.name}-all`}>
                 <div className="grid grid-cols-11 gap-1">
                   <ProfileImage

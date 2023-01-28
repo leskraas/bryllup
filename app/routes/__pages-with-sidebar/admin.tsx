@@ -145,21 +145,34 @@ export default function Admin(): JSX.Element {
             {allUsers.map((user) => (
               <Fragment key={`${user.id}-admin-rsvp`}>
                 <div className="font-bold">{user.name}</div>
-                <div
-                  className={clsx([
-                    !user.rsvp?.attend && "text-red-700",
-                    user.rsvp?.attend === Attend.YES && "text-green-800",
-                    user.rsvp?.attend === Attend.NO && "text-yellow-400",
-                    user.rsvp?.attend === Attend.SATURDAY && "text-orange-400",
-                  ])}
-                >
-                  {user.rsvp?.attend ? user.rsvp.attend : "Har ikke svart"}
-                </div>
-                <div>{user.rsvp?.submitterName}</div>
                 <div>
-                  {/* {user.rsvp?.allergies.map((comment) => (
-                    <div key={comment}>{comment}</div>
-                  ))} */}
+                  {user.rsvps?.map((rsvp) => (
+                    <div
+                      key={`${rsvp.id}-attending`}
+                      className={clsx([
+                        !rsvp?.attend && "text-red-700",
+                        rsvp?.attend === Attend.YES && "text-green-800",
+                        rsvp?.attend === Attend.NO && "text-yellow-400",
+                        rsvp?.attend === Attend.SATURDAY && "text-orange-400",
+                      ])}
+                    >
+                      {rsvp?.attend ? rsvp.attend : "Har ikke svart"}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {user.rsvps?.map((rsvp) => (
+                    <div key={`${rsvp.id}-submitter`}>
+                      {rsvp?.submitterName}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {user.rsvps?.map((rsvp) => (
+                    <div key={`${rsvp.id}-additionalInfo`}>
+                      {rsvp?.additionalInfo}
+                    </div>
+                  ))}
                 </div>
               </Fragment>
             ))}

@@ -1,4 +1,4 @@
-import type { Rsvp, User } from "@prisma/client";
+import type { Prisma, User } from "@prisma/client";
 import { prisma } from "~/db.server";
 
 export async function getRsvpById(id: User["id"]) {
@@ -15,83 +15,86 @@ export async function getRsvpById(id: User["id"]) {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 }
 
 export async function getAllRsvp() {
-  return prisma.rsvp.findMany({
+  const allUserAndRsvp = await prisma.user.findMany({
     select: {
-      attender: {
-        select: {
-          imgSrc: true,
-          name: true,
+      imgSrc: true,
+      name: true,
+      rsvps: {
+        orderBy: {
+          createdAt: "desc",
         },
+        select: {
+          attend: true,
+          id: true,
+        },
+        take: 1,
       },
-      attend: true,
+      id: true,
+    },
+    orderBy: {
+      name: "asc",
     },
   });
+  return allUserAndRsvp.map((user) => ({
+    ...user,
+    rsvp: user.rsvps.length ? user.rsvps[0] : null,
+  }));
 }
 
 export async function createRsvp({
   submitterName,
   attenderName,
-  allergies,
   ...rest
-}: Omit<Rsvp, "allergies" | "createdAt" | "updatedAt"> & {
-  allergies: string;
-}) {
-  const previousAllergies = (
-    await prisma.user.findFirst({
-      where: {
-        name: {
-          equals: attenderName,
-        },
-      },
-      select: {
-        rsvp: {
-          select: {
-            allergies: true,
-          },
-        },
-      },
-    })
-  )?.rsvp?.allergies;
-  const isAllergiesResponseDuplicate = previousAllergies
-    ? previousAllergies[previousAllergies.length - 1] === allergies
-    : false;
-
-  return prisma.user.update({
+}: Omit<Prisma.RsvpCreateArgs["data"], "submitter" | "attender">) {
+  return prisma.rsvp.create({
     data: {
-      rsvp: {
-        upsert: {
-          create: {
-            ...rest,
-            allergies,
-            submitter: {
-              connect: {
-                name: submitterName,
-              },
-            },
-          },
-          update: {
-            ...rest,
-            allergies: {
-              // push: isAllergiesResponseDuplicate ? undefined : allergies,
-              set: isAllergiesResponseDuplicate ? previousAllergies : undefined,
-            },
-            submitter: {
-              connect: {
-                name: submitterName,
-              },
-            },
-          },
+      ...rest,
+      submitter: {
+        connect: {
+          name: submitterName,
         },
       },
-    },
-    where: {
-      name: attenderName,
+      attender: {
+        connect: {
+          name: attenderName,
+        },
+      },
     },
   });
+  // return prisma.user.update({
+  //   data: {
+  //     rsvp: {
+  //       upsert: {
+  //         create: {
+  //           ...rest,
+  //           submitter: {
+  //             connect: {
+  //               name: submitterName,
+  //             },
+  //           },
+  //         },
+  //         update: {
+  //           ...rest,
+  //           submitter: {
+  //             connect: {
+  //               name: submitterName,
+  //             },
+  //           },
+  //         },
+  //       },
+  //     },
+  //   },
+  //   where: {
+  //     name: attenderName,
+  //   },
+  // });
 }
 
 export async function deleteAllRsvp() {
