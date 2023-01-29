@@ -41,7 +41,7 @@ export default function Index() {
         <div className="grid gap-8">
           <div>
             <h2 className="mb-4 text-3xl font-extralight">Forlovere </h2>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap items-start">
               <PresentPerson
                 bgSrc="./images/kristine_cleanup.jpg"
                 mainSrc="./images/kristine-removebg.png"

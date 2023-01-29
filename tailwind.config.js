@@ -28,6 +28,12 @@ module.exports = {
     require("@tailwindcss/forms"),
     ({ addUtilities }) => {
       addUtilities({
+        ".touch-iphone-fix": {
+          "-webkit-touch-callout": "none",
+        },
+        ".tap-highlight-none": {
+          "-webkit-tap-highlight-color": "transparent",
+        },
         ".min-h-iphone-safe": {
           "@apply min-h-screen": {},
           "min-height": "-webkit-fill-available",

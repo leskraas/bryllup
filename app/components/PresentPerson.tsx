@@ -1,8 +1,7 @@
-import type { Variants } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { useDimensions } from "./hooks/useDimentions";
 import { PopupImage } from "./PopupImage";
 
 type PresentPersonProps = {
@@ -12,99 +11,70 @@ type PresentPersonProps = {
   name: string;
 };
 
-// const background: Variants = {
-//   open: (height: number) => ({
-//     clipPath: `circle(${height}px at 50% 50%)`,
-//     // height: `${height}px`,
-//     transition: {
-//       type: "spring",
-//       stiffness: 400,
-//       restDelta: 20,
-//     },
-//   }),
-//   closed: {
-//     clipPath: "circle(1px at 50% 50%)",
-//     transition: {
-//       delay: 0.3,
-//       type: "spring",
-//       stiffness: 400,
-//       damping: 40,
-//     },
-//   },
-// };
-
-const content: Variants = {
-  open: (height: number) => ({
-    clipPath: `circle(115% at top)`,
-    transition: {
-      type: "spring",
-      stiffness: 20,
-      restDelta: 2,
-    },
-  }),
-  closed: {
-    clipPath: `circle(1% at top)`,
-    transition: {
-      type: "spring",
-      stiffness: 20,
-      restDelta: 2,
-    },
-  },
-};
-const contentHeight: Variants = {
-  open: (height: number) => ({
-    height: `calc(${height}px + 6rem)`,
-    transition: {
-      type: "just",
-    },
-  }),
-  closed: {
-    height: 0,
-    transition: {
-      type: "just",
-    },
-  },
-};
-
 export function PresentPerson({
   mainSrc,
   bgSrc,
   name,
   text,
 }: PresentPersonProps): JSX.Element {
-  // const [isSelected, setIsSelected] = useState(false);
-  // const contentRef = useRef(null);
-  // const contentHight = useDimensions(contentRef).height;
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <motion.button
-      // onClick={() => setIsSelected((prevState) => !prevState)}
-      whileHover={"hover"}
-      // onHoverEnd={() => setIsSelected(false)}
+      onClick={() => setIsOpen((prevState) => !prevState)}
+      whileHover="hover"
       className={twMerge(
-        "group relative grid w-full max-w-[200px] place-items-center overflow-visible rounded-lg duration-200"
-        // isSelected && "z-20"
+        "group relative grid w-full max-w-[170px] appearance-none justify-items-center overflow-visible rounded-lg align-top duration-200 tap-highlight-none"
       )}
       initial={false}
-      // animate={isSelected ? "open" : "closed"}
     >
-      <div className="z-10">
-        <PopupImage bgSrc={bgSrc} mainSrc={mainSrc} alt={name} />
-        <h4 className="text-lg font-bold">{name}</h4>
-      </div>
-      {/* <motion.div
-        className="absolute inset-0 top-1/2 mt-1 origin-top overflow-hidden rounded-lg bg-white pt-24 shadow"
-        variants={content}
-        // style={{ height: isSelected ? `calc(${contentHight}px + 6rem)` : 0 }}
-        // exit={{ height: 0 }}
-        // animate={{ height: `calc(${contentHight}px + 6rem)` }}
-
-        // animate={{ height: 0 }}
-        custom={contentHight}
+      <PopupImage bgSrc={bgSrc} mainSrc={mainSrc} alt={name} />
+      <motion.div
+        className={"rounded-m flex flex-col p-2"}
+        initial={false}
+        animate={{
+          backgroundColor: isOpen ? "white" : "transparent",
+        }}
       >
-        <div className="flex" ref={contentRef}>
-          {text}
-        </div>
-      </motion.div> */}
+        <h4 className="text-lg font-bold">{name}</h4>
+        <AnimatePresence mode="wait">
+          {isOpen && (
+            <motion.div
+              initial={{
+                height: 0,
+                opacity: 0,
+              }}
+              animate={{
+                height: "auto",
+                opacity: 1,
+                transition: {
+                  height: {
+                    duration: 0.4,
+                  },
+                  opacity: {
+                    duration: 0.25,
+                    delay: 0.15,
+                  },
+                },
+              }}
+              exit={{
+                height: 0,
+                opacity: 0,
+                transition: {
+                  height: {
+                    duration: 0.4,
+                  },
+                  opacity: {
+                    duration: 0.25,
+                  },
+                },
+              }}
+            >
+              {text}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </motion.button>
   );
 }

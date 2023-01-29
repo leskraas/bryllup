@@ -104,7 +104,6 @@ export function UserSelector({
                             fileName={person?.imgSrc || ""}
                             name={person.name}
                             className="h-6 w-6"
-                            loading="lazy"
                           />
                           <span
                             className={`block truncate ${
