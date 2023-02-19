@@ -22,7 +22,7 @@ export default function Index() {
 
   return (
     <main>
-      <div className="pb-safe flex h-screen flex-col min-h-iphone-safe sm:flex-row">
+      <div className="pb-safe flex h-[100svh] h-[100dvh]  flex-col min-h-iphone-safe sm:flex-row">
         <div className="relative flex flex-1 basis-full">
           <Image
             loaderUrl="/api/image"
