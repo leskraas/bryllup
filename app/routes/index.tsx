@@ -22,13 +22,20 @@ export default function Index() {
 
   return (
     <main>
-      <div className="pb-safe relative flex h-[100svh] h-[100dvh] flex-col min-h-iphone-safe min-[800px]:flex-row">
+      <div className="pb-safe relative flex h-[100svh] h-[100dvh] w-screen flex-col overflow-hidden min-h-iphone-safe min-[800px]:flex-row">
         <div className=" flex flex-1 basis-full">
           <div className="absolute inset-0 -z-10">
             <Image
               loaderUrl="/api/image"
-              className="h-full w-full overflow-visible object-cover object-left max-[700px]:translate-x-[-10vw]"
+              className="h-full w-full overflow-visible object-cover object-left max-[700px]:hidden"
               src="./images/forside_full.jpg"
+              alt="Louise og Lars Erik"
+              dprVariants={[1, 3]}
+            />
+            <Image
+              loaderUrl="/api/image"
+              className="h-full w-full overflow-visible object-cover min-[700px]:hidden"
+              src="./images/forside-d.jpg"
               alt="Louise og Lars Erik"
               dprVariants={[1, 3]}
             />
@@ -53,7 +60,7 @@ export default function Index() {
           </div> */}
         </div>
         <div className="flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-slate-900">
-          <div className="grid justify-items-center gap-2 rounded-md bg-white/50 p-8 backdrop-blur">
+          <div className="grid justify-items-center gap-2 rounded-md bg-white/50 p-4 backdrop-blur sm:p-8">
             <h2 className="text-4xl font-light sm:text-5xl">
               Grønolen Fjellgard
             </h2>
