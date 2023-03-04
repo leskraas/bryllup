@@ -27,6 +27,23 @@ export const links: LinksFunction = () => {
       type: "font/woff2",
       crossOrigin: "anonymous",
     },
+    {
+      rel: "preload",
+      as: "image",
+      href: "/images/forside_full.jpg",
+      media: "(min-width: 800px)",
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: "/images/forside-d.jpg",
+      media: "(max-width: 800px)",
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: "/images/forside_header.png",
+    },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     {
       rel: "preconnect",
@@ -59,7 +76,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-[100svh] w-screen overflow-x-hidden bg-sand-100 text-sand-900">
+      <body className="min-h-[100svh] w-screen overflow-x-hidden text-sand-900">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

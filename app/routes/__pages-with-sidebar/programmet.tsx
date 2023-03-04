@@ -8,7 +8,7 @@ export default function Index() {
   return (
     <MainLayout heading="Programmet">
       <Card>
-        <DaySeparator date={dayjs("2023.08.18")} />
+        <DaySeparator date={dayjs("2023-08-18", "YYYY-MM-DD")} />
         <Agenda timeFrom="18:00" timeTo="" title="Middag">
           <p>Buffet / grilling. Vi spiser og hygger oss.</p>
         </Agenda>
@@ -18,7 +18,7 @@ export default function Index() {
             før den store dagen.
           </p>
         </Agenda>
-        <DaySeparator date={dayjs("2023.08.19")} />
+        <DaySeparator date={dayjs("2023-08-19", "YYYY-MM-DD")} />
         <Agenda timeFrom="08:00" timeTo="10:00" title="Frokost">
           <p>
             Det serveres frokost. Viktig å spise godt, det blir en lang dag.
@@ -63,7 +63,7 @@ export default function Index() {
         <Agenda timeFrom="" timeTo="" title="Fest">
           <p> Vi setter i gang festen.</p>
         </Agenda>
-        <DaySeparator date={dayjs("2023.08.20")} />
+        <DaySeparator date={dayjs("2023-08-20", "YYYY-MM-DD")} />
         <Agenda timeFrom="09:00" timeTo="11:00" title="Frokost">
           <p>Frokost serveres.</p>
         </Agenda>

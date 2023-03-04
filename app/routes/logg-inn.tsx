@@ -14,6 +14,7 @@ import { createUserSession, getUserId } from "~/session.server";
 import { safeRedirect } from "~/utils";
 import { UserSelector } from "~/components/UserSelector";
 import { useEffect, useRef, useState } from "react";
+import { Card } from "~/components/Card";
 
 export async function loader({ request }: LoaderArgs) {
   const userId = await getUserId(request);
@@ -89,45 +90,49 @@ export default function LoginPage() {
   }, [actionData]);
 
   return (
-    <div className="mx-auto grid h-full w-full max-w-md px-8 pt-8">
-      <Form method="post" className="space-y-6" noValidate>
-        <div className="grid gap-4">
-          <h1 className="font-heading text-5xl sm:text-7xl">Logg inn</h1>
-          <UserSelector
-            name="name"
-            selectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-            allUsers={loaderData.allUsers}
-          />
-          <Input
-            id="password"
-            label="Passord"
-            ref={passwordRef}
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            errorMessage={actionData?.errors.password || ""}
-          />
-        </div>
-        <input type="hidden" name="redirectTo" value={redirectTo} />
-        <Button type="submit">Logg inn</Button>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <input
-              id="remember"
-              name="remember"
-              type="checkbox"
-              className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-            />
-            <label
-              htmlFor="remember"
-              className="ml-2 block text-sm text-gray-900"
-            >
-              Husk meg
-            </label>
-          </div>
-        </div>
-      </Form>
-    </div>
+    <main className="min-h-[100svh] bg-sand-100">
+      <div className="mx-auto grid h-full w-full max-w-md px-8 pt-8">
+        <Card className="p-4 sm:p-6">
+          <Form method="post" className="space-y-6" noValidate>
+            <div className="grid gap-4">
+              <h1 className="font-heading text-5xl sm:text-7xl">Logg inn</h1>
+              <UserSelector
+                name="name"
+                selectedUser={selectedUser}
+                setSelectedUser={setSelectedUser}
+                allUsers={loaderData.allUsers}
+              />
+              <Input
+                id="password"
+                label="Passord"
+                ref={passwordRef}
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                errorMessage={actionData?.errors.password || ""}
+              />
+            </div>
+            <input type="hidden" name="redirectTo" value={redirectTo} />
+            <Button type="submit">Logg inn</Button>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember"
+                  name="remember"
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <label
+                  htmlFor="remember"
+                  className="ml-2 block text-sm text-gray-900"
+                >
+                  Husk meg
+                </label>
+              </div>
+            </div>
+          </Form>
+        </Card>
+      </div>
+    </main>
   );
 }

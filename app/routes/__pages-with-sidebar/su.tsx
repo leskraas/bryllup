@@ -36,6 +36,7 @@ export async function loader({ request }: LoaderArgs) {
   }
 
   const rsvpLoggedInUser = await getRsvpById(loggedInUserId);
+  console.log(rsvpLoggedInUser);
 
   return json({
     allUsers,
@@ -142,6 +143,7 @@ export async function action({ request }: ActionArgs) {
   }
 
   const user = await verifyLogin(name, password);
+
   if (!user) {
     return json(
       {
@@ -156,10 +158,17 @@ export async function action({ request }: ActionArgs) {
     );
   }
 
+  await createRsvp({
+    additionalInfo,
+    attend,
+    attenderName: name,
+    submitterName: name,
+  });
+
   return createUserSession({
     request,
     userId: user.id,
-    remember: false,
+    remember: true,
     redirectTo: request.url,
   });
 }
@@ -188,10 +197,9 @@ export default function Rsvp(): JSX.Element {
     const additionalInfoRsvpLoggedInUser = rsvpLoggedInUser?.find(
       (e) => e.attenderName === selectedUser?.name
     )?.additionalInfo;
+
     const additionalInfoDefaultValue = additionalInfoRsvpLoggedInUser?.length
-      ? additionalInfoRsvpLoggedInUser[
-          additionalInfoRsvpLoggedInUser.length - 1
-        ]
+      ? additionalInfoRsvpLoggedInUser
       : loggedInUser?.name === selectedUser?.name && loggedInUser?.rsvps?.length
       ? loggedInUser.rsvps[loggedInUser.rsvps.length - 1].additionalInfo
       : "";
@@ -331,7 +339,7 @@ export default function Rsvp(): JSX.Element {
               </h3>
               {rsvpLoggedInUser?.map((rsvp) => (
                 <div
-                  key={`rsvp-${rsvp.attenderName}-${rsvp.submitterName}`}
+                  key={`rsvp-${rsvp.attenderName}-${rsvp.submitterName}-${rsvp.id}`}
                   className="grid gap-1"
                 >
                   <div className="grid grid-cols-11 gap-1">
@@ -378,6 +386,22 @@ export default function Rsvp(): JSX.Element {
                       ? attendLabel[user.rsvp.attend]
                       : "Har ikke svart"}
                   </span>
+                  {user.id === loggedInUser?.id && loggedInUser.rsvps.length ? (
+                    <p>{loggedInUser.rsvps[0].additionalInfo}</p>
+                  ) : null}
+                  {user.id !== loggedInUser?.id &&
+                    user.rsvps[0] &&
+                    rsvpLoggedInUser?.some(
+                      (rsvp) => rsvp.id === user.rsvps[0].id
+                    ) && (
+                      <p>
+                        {
+                          rsvpLoggedInUser.find(
+                            (rsvp) => rsvp.id === user.rsvps[0].id
+                          )?.additionalInfo
+                        }
+                      </p>
+                    )}
                 </div>
               </div>
             ))}
