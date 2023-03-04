@@ -59,7 +59,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen w-screen overflow-x-hidden bg-sand-100 text-sand-900">
+      <body className="min-h-[100svh] w-screen overflow-x-hidden bg-sand-100 text-sand-900">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

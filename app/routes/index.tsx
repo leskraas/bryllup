@@ -22,7 +22,7 @@ export default function Index() {
 
   return (
     <main>
-      <div className="pb-safe relative flex h-[100svh] h-[100dvh] w-screen flex-col overflow-hidden min-h-iphone-safe min-[800px]:flex-row">
+      <div className="pb-safe relative flex h-[100svh] w-screen flex-col overflow-hidden min-[800px]:flex-row">
         <div className=" flex flex-1 basis-full">
           <div className="absolute inset-0 -z-10">
             <Image
@@ -61,10 +61,9 @@ export default function Index() {
         </div>
         <div className="flex flex-1 basis-full flex-col content-center items-center justify-center gap-2 text-center text-slate-900">
           <div className="grid justify-items-center gap-2 rounded-md bg-white/50 p-4 backdrop-blur sm:p-8">
-            <h2 className="text-4xl font-light sm:text-5xl">
-              Grønolen Fjellgard
+            <h2 className="text-2xl font-light sm:text-5xl">
+              18-20 August 2023
             </h2>
-            <h3>18-20 August 2022</h3>
             <p className="flex gap-2">
               <span>{Math.floor(countDown.asDays())} dager</span>
               <span>{countDown.hours()} timer</span>

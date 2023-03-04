@@ -27,10 +27,7 @@ export default function Index() {
           <Card title="Kleskode">
             <div className="grid gap-2">
               <p>Dress/mørk dress.</p>
-            </div>
-            <div className="grid gap-2">
               <p>
-                {" "}
                 I fjellbryllup-stil synes vi at det hadde vært flott, for de som
                 ønsker, å bruke bunad i vielsen. Det vil være tid til å skifte
                 fra bunad til annet tøy etter kirken.{" "}
@@ -56,15 +53,19 @@ export default function Index() {
                 {" "}
                 I et bryllup blir det fort mange og lange taler. Vi tenker "kort
                 og godt" og vil derfor ha en tidsbegrensning på taletid til max
-                5-7min. De som ønsker å holde tale må ta kontakt med toastmaster
-                Torjus på mail: torjus.saethre@gmail.com.
+                5-7min.
+              </p>
+              <p>
+                {" "}
+                De som ønsker å holde tale må ta kontakt med toastmaster Torjus
+                på mail: torjus.saethre@gmail.com.
               </p>
             </div>
           </Card>
           <Card title="En stor takk">
             <div className="grid gap-2">
               <p>
-                ...til Julie Marie Skolmen, som har laget illustrasjonen som er
+                ...til Julie Marie Skolem, som har laget illustrasjonen som er
                 på bryllupsinvitasjonen og nettsiden sin forside.
               </p>
               <p>...til våre fantastiske foreldre som har bidratt.</p>
@@ -72,7 +73,7 @@ export default function Index() {
             </div>
           </Card>
         </div>
-        <div className="grid gap-8">
+        <div className="grid gap-8 place-self-start">
           <div>
             <h2 className="mb-4 text-3xl font-extralight">Forlovere </h2>
             <div className="flex flex-wrap items-start">
