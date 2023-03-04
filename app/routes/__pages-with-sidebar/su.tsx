@@ -147,7 +147,7 @@ export async function action({ request }: ActionArgs) {
       {
         errors: {
           name: null,
-          password: "Navn og passord sammsvarer ikke",
+          password: "Navn og passord samsvarer ikke",
           attend: null,
           other: null,
         },

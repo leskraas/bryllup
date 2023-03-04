@@ -39,39 +39,43 @@ export function PresentPerson({
         <h4 className="text-lg font-bold">{name}</h4>
         <AnimatePresence mode="wait">
           {isOpen && (
-            <motion.div
-              initial={{
-                height: 0,
-                opacity: 0,
-              }}
-              animate={{
-                height: "auto",
-                opacity: 1,
-                transition: {
-                  height: {
-                    duration: 0.4,
+            <div className="relative z-10">
+              <motion.div
+                className="bg-white"
+                initial={{
+                  height: 0,
+                  opacity: 0,
+                }}
+                animate={{
+                  height: "auto",
+                  opacity: 1,
+                  position: "absolute",
+                  transition: {
+                    height: {
+                      duration: 0.4,
+                    },
+                    opacity: {
+                      duration: 0.25,
+                      delay: 0.15,
+                    },
                   },
-                  opacity: {
-                    duration: 0.25,
-                    delay: 0.15,
+                }}
+                exit={{
+                  height: 0,
+                  opacity: 0,
+                  transition: {
+                    height: {
+                      duration: 0.4,
+                    },
+                    opacity: {
+                      duration: 0.25,
+                    },
                   },
-                },
-              }}
-              exit={{
-                height: 0,
-                opacity: 0,
-                transition: {
-                  height: {
-                    duration: 0.4,
-                  },
-                  opacity: {
-                    duration: 0.25,
-                  },
-                },
-              }}
-            >
-              {text}
-            </motion.div>
+                }}
+              >
+                {text}
+              </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </motion.div>
