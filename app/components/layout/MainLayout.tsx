@@ -10,7 +10,7 @@ export function MainLayout({
   children,
 }: MainLayoutProps): JSX.Element {
   return (
-    <main className="p-2 sm:py-8 sm:pr-8">
+    <main className="m-2 mt-8 sm:m-4 sm:mt-10">
       <h1 className="mb-4 font-heading text-5xl text-sand-900 sm:text-6xl">
         {heading}
       </h1>

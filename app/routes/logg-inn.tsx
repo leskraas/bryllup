@@ -90,8 +90,8 @@ export default function LoginPage() {
   }, [actionData]);
 
   return (
-    <main className="min-h-[100svh] bg-sand-100">
-      <div className="mx-auto grid h-full w-full max-w-md px-8 pt-8">
+    <main>
+      <div className="mx-auto grid h-full w-full max-w-md px-2 pt-8">
         <Card className="p-4 sm:p-6">
           <Form method="post" className="space-y-6" noValidate>
             <div className="grid gap-4">

@@ -19,7 +19,7 @@ export function ProfileLoginLogout({
             pathname: "/logg-inn",
             search: `redirectTo=${location.pathname}`,
           }}
-          className="text-md inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-900 bg-sand-100 py-2 px-4 font-medium text-slate-900 shadow-sm hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="text-md inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-900 bg-sand-100/5 py-2 px-4 font-medium text-slate-900 shadow-sm backdrop-blur-sm hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
           <ArrowLeftOnRectangleIcon className="h-5 w-5" />
           Logg inn

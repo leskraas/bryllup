@@ -73,7 +73,7 @@ export default function Index() {
             </div>
           </Card>
         </div>
-        <div className="grid gap-8 place-self-start">
+        <div className="grid w-full gap-8 place-self-start">
           <div>
             <h2 className="mb-4 text-3xl font-extralight">Forlovere </h2>
             <div className="flex flex-wrap items-start">
@@ -111,7 +111,7 @@ export default function Index() {
               bgSrc="./images/torjus_cleanup.jpg"
               mainSrc="./images/torjus-removebg.png"
               name="Torjus"
-              text="torjus"
+              text="lorem10 dolor sit amet, consectetur adipiscing elit sed diam nonumy eirmod tempor incididunt ut labore et"
             />
           </div>
         </div>

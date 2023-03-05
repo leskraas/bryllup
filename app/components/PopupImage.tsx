@@ -22,7 +22,7 @@ export function PopupImage({
         className="pointer-events-none absolute bottom-0 aspect-square h-40 touch-none rounded-b-full object-cover touch-iphone-fix"
         src={mainSrc}
         variants={{
-          hover: {
+          pop: {
             scale: 1.15,
             translateY: "-.5rem",
             transition: {

@@ -67,16 +67,18 @@ export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Louise og Lars Erik",
   viewport: "width=device-width,initial-scale=1,viewport-fit=cover",
+  "theme-color": "#cde2e5",
+  "theme-color": "#FDFBF7",
 });
 
 export default function App() {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth bg-sand-100">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="min-h-[100svh] w-screen overflow-x-hidden text-sand-900">
+      <body className="min-h-[100svh] text-sand-900">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

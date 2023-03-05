@@ -14,7 +14,7 @@ export async function loader({ request }: LoaderArgs) {
 export default function Index(): JSX.Element {
   const { user } = useLoaderData<typeof loader>();
   return (
-    <div className="flex min-h-[100svh] flex-col-reverse bg-sand-100 py-4 sm:flex-row">
+    <div className="flex flex-col-reverse sm:flex-row">
       <div className="hidden sm:block">
         <NavBar user={user} />
       </div>
