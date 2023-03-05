@@ -67,7 +67,6 @@ export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Louise og Lars Erik",
   viewport: "width=device-width,initial-scale=1,viewport-fit=cover",
-  "theme-color": "#cde2e5",
   "theme-color": "#FDFBF7",
 });
 
