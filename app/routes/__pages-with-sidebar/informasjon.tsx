@@ -3,6 +3,7 @@ import { Card } from "~/components/Card";
 import { PageGrid } from "~/components/PageGrid";
 import { Link } from "@remix-run/react";
 import { MainLayout } from "~/components/layout/MainLayout";
+import { A } from "~/components/A";
 
 export default function Index() {
   return (
@@ -30,7 +31,7 @@ export default function Index() {
               <p>
                 I fjellbryllup-stil synes vi at det hadde vært flott, for de som
                 ønsker, å bruke bunad i vielsen. Det vil være tid til å skifte
-                fra bunad til annet tøy etter kirken.{" "}
+                fra bunad til annet tøy etter kirken, hvis man ønsker det.
               </p>
             </div>
           </Card>
@@ -50,15 +51,17 @@ export default function Index() {
           <Card title="Tale?">
             <div className="grid gap-2">
               <p>
-                {" "}
                 I et bryllup blir det fort mange og lange taler. Vi tenker "kort
                 og godt" og vil derfor ha en tidsbegrensning på taletid til max
                 5-7min.
               </p>
               <p>
-                {" "}
                 De som ønsker å holde tale må ta kontakt med toastmaster Torjus
-                på mail: torjus.saethre@gmail.com.
+                på mail:{" "}
+                <A href="mailto:torjus.saethre@gmail.com">
+                  torjus.saethre@gmail.com
+                </A>
+                .
               </p>
             </div>
           </Card>

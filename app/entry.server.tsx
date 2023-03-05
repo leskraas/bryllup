@@ -20,6 +20,7 @@ export default function handleRequest(
   return new Promise((resolve, reject) => {
     let didError = false;
 
+    const url = new URL(request.url);
     const { pipe, abort } = renderToPipeableStream(
       <RemixServer context={remixContext} url={request.url} />,
       {
@@ -27,7 +28,9 @@ export default function handleRequest(
           const body = new PassThrough();
 
           responseHeaders.set("Content-Type", "text/html");
-
+          if (url.pathname === "/") {
+            responseHeaders.set("Cache-Control", "max-age=300, s-maxage=3600");
+          }
           resolve(
             new Response(body, {
               headers: responseHeaders,

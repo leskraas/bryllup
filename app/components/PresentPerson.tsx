@@ -31,7 +31,7 @@ export function PresentPerson({
             <PopupImage bgSrc={bgSrc} mainSrc={mainSrc} alt={name} />
             <div
               className={twMerge(
-                "rounded-md p-2 transition",
+                "overflow-hidden rounded-md p-2 transition",
                 open && "bg-white shadow"
               )}
             >
@@ -43,12 +43,10 @@ export function PresentPerson({
                     as={motion.p}
                     initial={{
                       height: 0,
-                      width: 0,
                       opacity: 0,
                     }}
                     animate={{
                       height: "auto",
-                      width: "auto",
                       opacity: 1,
                       transition: {
                         height: {
@@ -62,7 +60,6 @@ export function PresentPerson({
                     }}
                     exit={{
                       height: 0,
-                      width: 0,
                       opacity: 0,
                       transition: {
                         height: {

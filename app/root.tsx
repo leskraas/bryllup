@@ -36,13 +36,19 @@ export const links: LinksFunction = () => {
     {
       rel: "preload",
       as: "image",
-      href: "/images/forside-d.jpg",
+      href: "/images/forside_full.webp",
+      media: "(min-width: 800px)",
+    },
+    {
+      rel: "preload",
+      as: "image",
+      href: "/images/forside-d.webp",
       media: "(max-width: 800px)",
     },
     {
       rel: "preload",
       as: "image",
-      href: "/images/forside_header.png",
+      href: "/images/forside_header.webp",
     },
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     {

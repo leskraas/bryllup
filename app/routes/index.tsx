@@ -28,18 +28,28 @@ export default function Index() {
   return (
     <main className="mb-safe relative flex h-[100svh] w-screen flex-col overflow-hidden bg-[rgb(205,222,229)] min-[800px]:flex-row">
       <div className=" flex flex-1 basis-full">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 max-[700px]:hidden">
           <Image
             loaderUrl="/api/image"
-            className="h-full w-full overflow-visible object-cover object-left max-[700px]:hidden"
+            className="h-full w-full overflow-visible object-cover object-left"
+            src="./images/forside_full.webp"
+            alt="Louise og Lars Erik"
+          />
+        </div>
+        <div className="fixed inset-0 max-[700px]:hidden">
+          <Image
+            loaderUrl="/api/image"
+            className="h-full w-full overflow-visible object-cover object-left"
             src="./images/forside_full.jpg"
             alt="Louise og Lars Erik"
-            dprVariants={[1, 3]}
           />
+        </div>
+        <div className="absolute inset-0 min-[700px]:hidden">
           <Image
             loaderUrl="/api/image"
-            className="h-full w-full overflow-visible object-cover min-[700px]:hidden"
+            className="h-full w-full overflow-visible object-cover "
             src="./images/forside-d.jpg"
+            blurDataURL="./images/forside-d.webp"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
           />
@@ -49,6 +59,7 @@ export default function Index() {
             loaderUrl="/api/image"
             className="w-full max-w-[600px] object-cover max-[700px]:w-[90%]"
             src="./images/forside_header.png"
+            blurDataURL="./images/forside_header.webp"
             alt="Louise og Lars Erik"
             dprVariants={[1, 3]}
           />
