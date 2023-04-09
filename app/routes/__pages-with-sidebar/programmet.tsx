@@ -16,7 +16,7 @@ export default function Index() {
               før den store dagen.
             </p>
             <p>
-              Buffet / grilling. Vi spiser og hygger oss. Vi kommer til bake med
+              Buffet / grilling. Vi spiser og hygger oss. Vi kommer tilbake med
               tidspunkt for når maten blir servert.
             </p>
           </div>

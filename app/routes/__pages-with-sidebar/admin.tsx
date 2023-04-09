@@ -212,6 +212,14 @@ export default function Admin(): JSX.Element {
               </div>
             </Fragment>
           ))}
+          <p>{allUsers.length}</p>
+          <p>
+            {
+              allUsers.filter(
+                (user) => user.rsvps.filter((rsvp) => rsvp.attend).length
+              ).length
+            }
+          </p>
         </div>
       </div>
       <Form method="delete">
