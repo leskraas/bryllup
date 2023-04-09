@@ -313,7 +313,7 @@ export default function Rsvp(): JSX.Element {
                           .additionalInfo || ""
                       : ""
                   }
-                  description="Informasjon som kan være nyttig for arrangøren å vite. Svaret ditt vil kun være tilgjengelig for administrator."
+                  description="Informasjon som kan være nyttig for arrangøren å vite. Svaret ditt vil kun være tilgjengelig for administrator og deg."
                 />
                 {actionData?.errors.other && (
                   <p

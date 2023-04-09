@@ -2,47 +2,46 @@ import { Card } from "~/components/Card";
 import { PageGrid } from "~/components/PageGrid";
 import { ArrowLink } from "~/components/ArrowButton";
 import { MainLayout } from "~/components/layout/MainLayout";
+import { A } from "~/components/A";
 
 export default function Index() {
   return (
     <MainLayout heading="Overnatting & transport">
       <PageGrid>
         <div className="grid content-start gap-4">
-          <Card title="Grønolen fjellgard">
+          <Card title="Grønolen Fjellgard">
             <p>
-              Bryllupet vårt arrangeres på Grønolen Fjellgard, en flott
-              fjellgård på Beitostølen. Vi har holdt av alle rommene for denne
-              helgen, og ønsker at du/dere vil bo her med oss.
+              Vi gifter oss på Grønolen Fjellgard, en flott fjellgård på
+              Beitostølen. Alle rommene er reservert til oss denne helgen og vi
+              håper at du/dere vil bo her sammen med oss!
             </p>
           </Card>
           <Card title="Pakke og pris">
             <div className="grid gap-2">
               <p>
-                Grønolen fjellgard har lagd en overnattingspakke for denne
-                anledningen. Denne pakken består av to overnattinger med
-                frokost, fra fredag til søndag og med en buffet på fredag kveld
-                inludert. Denne pakken koster kr 2.350,- pr person i dobbeltrom
-                og kr 2.850,- i enkeltrom.
+                Grønolen Fjellgard har lagd en overnattingspakke til oss. Pakken
+                består av to overnattinger med frokost, fra fredag til søndag.
+                Buffet/grilling på fredag kveld er inludert. Pakken koster kr
+                2.350,- pr person i dobbeltrom og kr 2.850,- i enkeltrom.
               </p>
               <p>
-                Om dere kun har anledning til å være med en dag, så vil prisene
-                samsvare med overnattingsprisene som ligger på{" "}
-                <a
+                Har ikke du/dere anledning til å være med hele helgen, så finner
+                du/dere overnattingsprisene på{" "}
+                <A
                   href="https://gronolen.no/fjellstue-valdres/"
                   target="_blank"
                   rel="noreferrer"
-                  className="font-medium italic underline hover:text-sand-800"
                 >
                   nett
-                </a>
+                </A>
                 .
               </p>
             </div>
           </Card>{" "}
           <Card title="Bestilling">
             <div className="grid gap-2">
-              <p>Her kan du bestille.</p>
-              <div>
+              <p>Rom kan bestilles fra 10.mai. Mer informasjon kommer her.</p>
+              {/* <div>
                 <ArrowLink
                   className="pt-4"
                   href="https://gronolen.no/booking/"
@@ -50,12 +49,12 @@ export default function Index() {
                 >
                   Bestill overnatting
                 </ArrowLink>
-              </div>
+              </div> */}
             </div>
           </Card>
           <Card title="Transport">
             <div className="grid gap-2">
-              <p> Det er mulig å parkere ved Grønolen fjellgard. </p>
+              <p> Det er mulig å parkere ved Grønolen Fjellgard. </p>
               <p>
                 {" "}
                 For de som busser, kan man ta Valdres ekspressen til
@@ -68,7 +67,7 @@ export default function Index() {
         <div>
           <img
             src="./images/gronolen_fjellgard.jpg"
-            alt="Grønolen fjellgard"
+            alt="Grønolen Fjellgard"
             className="object-cover"
           />
         </div>

@@ -13,9 +13,9 @@ export default function Index() {
           <Card title="Overnatting & Transport">
             <div className="grid gap-2">
               <p>
-                Bryllupet vårt arrangeres på Grønolen Fjellgard, en flott
-                fjellgård på Beitostølen. Vi har holdt av alle rommene for denne
-                helgen og ønsker at du/dere vil bo her med oss!
+                Vi gifter oss på Grønolen Fjellgard, en flott fjellgård på
+                Beitostølen. Alle rommene er reservert til oss denne helgen og
+                vi håper at du/dere vil bo her sammen med oss!
                 <Link
                   to="/overnatting"
                   className="block font-medium italic underline hover:text-sand-800"
@@ -29,9 +29,9 @@ export default function Index() {
             <div className="grid gap-2">
               <p>Dress/mørk dress.</p>
               <p>
-                I fjellbryllup-stil synes vi at det hadde vært flott, for de som
-                ønsker, å bruke bunad i vielsen. Det vil være tid til å skifte
-                fra bunad til annet tøy etter kirken, hvis man ønsker det.
+                I fjellbryllup-stil er det hyggelig om de som har bunad bruker
+                den under vielsen. Mellom vielse og middag er det god tid til å
+                skifte om hvis man ønsker det.
               </p>
             </div>
           </Card>
@@ -40,11 +40,11 @@ export default function Index() {
               <p>
                 Ettersom denne helgen innebærer kostnader ved reise og opphold
                 er det for oss en stor gave i seg selv at du/dere blir med på
-                feiringen. Vi ønsker i hovedsak ingen gaver utover dette.
+                feiringen.
               </p>
               <p>
-                Vi har fått tilbakemelding på at noen til tross dette ønsker å
-                gi en gave. Vi har i den anledning laget en liten liste her.
+                Siden noen likevel har ytret at de ønsker å gi en gave, har vi
+                lage en liten ønskeliste her.
               </p>
             </div>
           </Card>
@@ -56,9 +56,9 @@ export default function Index() {
                 5-7min.
               </p>
               <p>
-                De som ønsker å holde tale må ta kontakt med toastmaster Torjus
-                på mail:{" "}
-                <A href="mailto:torjus.saethre@gmail.com">
+                De som ønsker å si noen ord kan sende en mail til toastmaster
+                Torjus:{" "}
+                <A href="mailto:torjus.saethre@gmail.com?subject=Tale i Louise og Lars Erik sitt bryllup">
                   torjus.saethre@gmail.com
                 </A>
                 .
@@ -69,7 +69,7 @@ export default function Index() {
             <div className="grid gap-2">
               <p>
                 ...til Julie Marie Skolem, som har laget illustrasjonen som er
-                på bryllupsinvitasjonen og nettsiden sin forside.
+                på bryllupsinvitasjonen og nettsiden.
               </p>
               <p>...til våre fantastiske foreldre som har bidratt.</p>
               <p></p>
