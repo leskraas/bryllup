@@ -7,7 +7,7 @@ import { PopupImage } from "./PopupImage";
 type PresentPersonProps = {
   bgSrc: string;
   mainSrc: string;
-  text: string;
+  text: string[];
   name: string;
 };
 
@@ -25,7 +25,7 @@ export function PresentPerson({
             as={motion.button}
             whileHover="pop"
             whileTap="pop"
-            className="group relative mb-4 flex w-[170px] appearance-none flex-col items-center justify-center justify-items-center rounded-lg align-top outline-none duration-200 tap-highlight-none"
+            className="group relative mb-4 flex w-[180px] appearance-none flex-col items-center justify-center justify-items-center rounded-lg align-top outline-none duration-200 tap-highlight-none"
             initial={false}
           >
             <PopupImage bgSrc={bgSrc} mainSrc={mainSrc} alt={name} />
@@ -39,8 +39,9 @@ export function PresentPerson({
               <AnimatePresence mode="wait">
                 {open && (
                   <Popover.Panel
+                    className="text-center"
                     static
-                    as={motion.p}
+                    as={motion.div}
                     initial={{
                       height: 0,
                       opacity: 0,
@@ -71,7 +72,9 @@ export function PresentPerson({
                       },
                     }}
                   >
-                    {text}
+                    {text.map((t) => (
+                      <p key={t}>{t}</p>
+                    ))}
                   </Popover.Panel>
                 )}
               </AnimatePresence>

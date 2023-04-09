@@ -84,27 +84,32 @@ export default function Index() {
                 bgSrc="./images/kristine_cleanup.jpg"
                 mainSrc="./images/kristine-removebg.png"
                 name="Kristine"
-                text="Kristine er Louise sin forlover. 
-                De har kjent hverandre siden 1. klasse på Vinderen barneskole. 
-                Kristine er et friluftsmenneske, med flere lengre turer under beltet og 
-                er ikke fremmed for å lese krim alene på telttur."
+                text={[
+                  `Kristine er Louise sin forlover. `,
+                  `De har kjent hverandre siden 1. klasse på Vinderen barneskole. `,
+                  `Kristine er et friluftsmenneske, med flere lengre turer under beltet og 
+                er ikke fremmed for å lese krim alene på telttur.`,
+                ]}
               />
               <PresentPerson
                 mainSrc="./images/kristoffer-removebg.png"
                 bgSrc="./images/kristoffer_cleanup.jpg"
                 name="Kristoffer"
-                text="Kristoffer er en av Lars Erik sine forlovere. 
-                Kristoffer og Lars Erik ble kjent med hverandre allerede i barnehagen. 
-                Kristoffer er et friluftsmenneske med en brennende interesse for billig strøm"
+                text={[
+                  `Kristoffer er en av Lars Erik sine forlovere. `,
+                  `Kristoffer og Lars Erik ble kjent med hverandre allerede i barnehagen. `,
+                  `Kristoffer er et friluftsmenneske med en brennende interesse for billig strøm.`,
+                ]}
               />
               <PresentPerson
                 mainSrc="./images/magnus-removebg.png"
                 bgSrc="./images/magnus_cleanup.jpg"
                 name="Magnus"
-                text="Magnus er en av Lars Erik sine forlovere. 
-                Magnus og Lars Erik ble venner på barneskolen, gjennom rap. 
-                Ta gjerne å spør Magnus om hans musikalske evner. 
-                "
+                text={[
+                  `Magnus er en av Lars Erik sine forlovere.`,
+                  `Magnus og Lars Erik ble kjent med hverandre tidlig i barneskolen.`,
+                  `Magnus er en dedikert politimann med et sterkt engasjement for rettferdighet og samfunnets sikkerhet.`,
+                ]}
               />
             </div>
           </div>
@@ -114,7 +119,11 @@ export default function Index() {
               bgSrc="./images/torjus_cleanup.jpg"
               mainSrc="./images/torjus-removebg.png"
               name="Torjus"
-              text="lorem10 dolor sit amet, consectetur adipiscing elit sed diam nonumy eirmod tempor incididunt ut labore et"
+              text={[
+                `Torjus er vår toastmaster.`,
+                `Torjus og Lars Erik krysset stier på barneskolen, men ble først gode venner på videregående.`,
+                `I tillegg til å være en god venn, jobber Torjus sammen med Lars Erik i Bredvid. Med sine sterke formidlingsevner og naturlig karisma, er Torjus et perfekt valg for rollen som toastmaster.`,
+              ]}
             />
           </div>
         </div>
