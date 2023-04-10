@@ -36,8 +36,6 @@ export async function loader({ request }: LoaderArgs) {
   }
 
   const rsvpLoggedInUser = await getRsvpById(loggedInUserId);
-  console.log(rsvpLoggedInUser);
-
   return json({
     allUsers,
     isLoggedIn,

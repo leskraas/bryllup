@@ -105,8 +105,6 @@ export async function updateUser(
 }
 
 export async function deleteUserById(id: User["id"]) {
-  console.log(id);
-
   return prisma.user.delete({ where: { id } });
 }
 
