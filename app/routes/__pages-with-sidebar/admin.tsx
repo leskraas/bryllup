@@ -212,11 +212,35 @@ export default function Admin(): JSX.Element {
               </div>
             </Fragment>
           ))}
-          <p>{allUsers.length}</p>
+          <p>Antall gjester:{allUsers.length}</p>
           <p>
+            Antall svar:
             {
               allUsers.filter(
                 (user) => user.rsvps.filter((rsvp) => rsvp.attend).length
+              ).length
+            }
+          </p>
+          <p>
+            helg:
+            {
+              allUsers.filter(
+                (user) =>
+                  user.rsvps.filter((rsvp) => rsvp.attend === "YES").length
+              ).length
+            }{" "}
+            lørdag:
+            {
+              allUsers.filter(
+                (user) =>
+                  user.rsvps.filter((rsvp) => rsvp.attend === "SATURDAY").length
+              ).length
+            }{" "}
+            nei:
+            {
+              allUsers.filter(
+                (user) =>
+                  user.rsvps.filter((rsvp) => rsvp.attend === "NO").length
               ).length
             }
           </p>
