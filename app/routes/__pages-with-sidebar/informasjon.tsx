@@ -43,8 +43,10 @@ export default function Index() {
                 feiringen.
               </p>
               <p>
-                Siden noen likevel har ytret at de ønsker å gi en gave, har vi
-                lage en liten ønskeliste her.
+                Siden noen likevel har ytret at de ønsker å gi en gave, skal vi
+                også lage en ønskeliste. Den er ikke helt ferdig enda, men du
+                vil finne den her om kort tid.
+                {/* har vi lage en liten ønskeliste her. */}
               </p>
             </div>
           </Card>
@@ -120,9 +122,9 @@ export default function Index() {
               mainSrc="./images/torjus-removebg.png"
               name="Torjus"
               text={[
-                `Torjus er vår toastmaster.`,
-                `Torjus og Lars Erik krysset stier på barneskolen, men ble først gode venner på videregående.`,
-                `I tillegg til å være en god venn, jobber Torjus sammen med Lars Erik i Bredvid. Med sine sterke formidlingsevner og naturlig karisma, er Torjus et perfekt valg for rollen som toastmaster.`,
+                `Vår toastmaster.`,
+                `Torjus og Lars Erik sine stier krysset hverandre første gang på barneskolen, men det var på videregående vi ble virkelig gode venner.`,
+                `I tillegg til å være en god venn, er han også en god arbeidskollega i Bredvid. Med sin sterke formidlingsevne og naturlige karisma, er Torjus et perfekt valg i rollen som toastmaster.`,
               ]}
             />
           </div>
