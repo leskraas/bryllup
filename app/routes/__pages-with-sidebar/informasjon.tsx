@@ -55,7 +55,7 @@ export default function Index() {
               <p>
                 I et bryllup blir det fort mange og lange taler. Vi tenker "kort
                 og godt" og vil derfor ha en tidsbegrensning på taletid til max
-                5-7min.
+                5 min.
               </p>
               <p>
                 De som ønsker å si noen ord kan sende en mail til toastmaster

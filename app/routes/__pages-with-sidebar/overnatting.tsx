@@ -40,7 +40,7 @@ export default function Index() {
           </Card>{" "}
           <Card title="Bestilling">
             <div className="grid gap-2">
-              <p>Rom kan bestilles fra 10.mai. Mer informasjon kommer her.</p>
+              <p>Rom kan bestilles fra 15.juni. Mer informasjon kommer her.</p>
               {/* <div>
                 <ArrowLink
                   className="pt-4"
