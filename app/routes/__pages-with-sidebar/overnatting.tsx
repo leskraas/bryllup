@@ -42,8 +42,8 @@ export default function Index() {
           <Card title="Bestilling">
             <div className="grid gap-2">
               <p>
-                Rom kan bestilles fra 15.juni. Vi kommer med mer informasjon om
-                hvordan dere skal bestille overnatting om få dager.
+                Innen få dager vil vi komme med mer detaljer rundt hvordan
+                du/dere kan bestille overnatting. Rom kan bestilles fra 15.juni.
               </p>
               {/* <div>
                 <ArrowLink
