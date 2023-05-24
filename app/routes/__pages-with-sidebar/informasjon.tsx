@@ -14,8 +14,9 @@ export default function Index() {
             <div className="grid gap-2">
               <p>
                 Vi gifter oss på Grønolen Fjellgard, en flott fjellgård på
-                Beitostølen. Alle rommene er reservert til oss denne helgen og
-                vi håper at du/dere vil bo her sammen med oss!
+                Beitostølen. Alle rommene er reservert til oss denne helgen, så
+                det er plass til alle. Vi håper at du/dere vil bo her sammen med
+                oss!
                 <Link
                   to="/overnatting"
                   className="block font-medium italic underline hover:text-sand-800"

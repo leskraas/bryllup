@@ -12,8 +12,9 @@ export default function Index() {
           <Card title="Grønolen Fjellgard">
             <p>
               Vi gifter oss på Grønolen Fjellgard, en flott fjellgård på
-              Beitostølen. Alle rommene er reservert til oss denne helgen og vi
-              håper at du/dere vil bo her sammen med oss!
+              Beitostølen. Alle rommene er reservert til oss denne helgen, så
+              det er plass til alle. Vi håper at du/dere vil bo her sammen med
+              oss!
             </p>
           </Card>
           <Card title="Pakke og pris">
@@ -40,7 +41,10 @@ export default function Index() {
           </Card>{" "}
           <Card title="Bestilling">
             <div className="grid gap-2">
-              <p>Rom kan bestilles fra 15.juni. Mer informasjon kommer her.</p>
+              <p>
+                Rom kan bestilles fra 15.juni. Vi kommer med mer informasjon om
+                hvordan dere skal bestille overnatting om få dager.
+              </p>
               {/* <div>
                 <ArrowLink
                   className="pt-4"

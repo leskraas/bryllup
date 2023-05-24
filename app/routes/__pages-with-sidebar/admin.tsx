@@ -246,14 +246,14 @@ export default function Admin(): JSX.Element {
           </p>
         </div>
       </div>
-      <Form method="delete">
+      {/* <Form method="delete">
         <Card title="Faresone" className="mt-10 bg-red-100 text-red-900">
           <p className="pb-4">Vær forsiktig her!</p>
           <Button variant="danger" name="_action" value="delete-all-rsvp">
             Slett alle svar
           </Button>
         </Card>
-      </Form>
+      </Form> */}
     </MainLayout>
   );
 }
