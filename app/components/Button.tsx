@@ -5,6 +5,7 @@ type ButtonProps = {
   children: ReactNode;
   variant?: "primary" | "secondary" | "tertiary" | "danger";
   isIconButton?: boolean;
+  showSuccessIcon?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function Button({

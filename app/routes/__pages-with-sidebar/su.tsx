@@ -1,10 +1,12 @@
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
 import { Attend } from "@prisma/client";
-import { Form, useActionData, useLoaderData } from "@remix-run/react";
+import { useActionData, useFetcher, useLoaderData } from "@remix-run/react";
 import type { ActionArgs, LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import { Button } from "~/components/Button";
 import { Card } from "~/components/Card";
 import { Input } from "~/components/Input";
@@ -175,6 +177,24 @@ export default function Rsvp(): JSX.Element {
   const { allUsers, isLoggedIn, loggedInUser, rsvpLoggedInUser, allRsvp } =
     useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
+  const fetcher = useFetcher();
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    setIsSuccess(
+      fetcher.type === "done" &&
+        !actionData?.errors.attend &&
+        !actionData?.errors.name &&
+        !actionData?.errors.other &&
+        !actionData?.errors.password
+    );
+    const timer = setTimeout(() => {
+      setIsSuccess(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [fetcher, actionData]);
+
   const additionalInfoRef = useRef<HTMLTextAreaElement>(null);
   const [selectedUser, setSelectedUser] = useState(
     loggedInUser
@@ -209,15 +229,18 @@ export default function Rsvp(): JSX.Element {
   return (
     <MainLayout heading="Svar utbedes">
       <div className="grid gap-4">
-        <Form method="post" replace>
+        <fetcher.Form method="post" replace>
           <Card>
             <div className="sm:p-4">
               <div className="grid grid-cols-6 gap-6">
-                {loggedInUser?.name && (
-                  <h2 className="col-span-6 text-3xl font-extralight">
-                    Hei {loggedInUser.name}!
-                  </h2>
-                )}
+                <div className="col-span-6 grid gap-2">
+                  {loggedInUser?.name && (
+                    <h2 className="text-3xl font-extralight">
+                      Hei {loggedInUser.name}!
+                    </h2>
+                  )}
+                  <p className="font-medium">Svar utbedes innen 1.juli.</p>
+                </div>
                 <UserSelector
                   name="name"
                   className="col-span-6 sm:col-span-4"
@@ -325,10 +348,29 @@ export default function Rsvp(): JSX.Element {
             </div>
 
             <div className="px-4 py-3 text-right sm:px-6">
-              <Button type="submit">Send inn</Button>
+              <Button type="submit" className="relative">
+                Send inn{" "}
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{
+                    scale: isSuccess ? 1 : 0,
+                  }}
+                  className={twMerge(
+                    "absolute inset-0 grid place-items-center rounded-[inherit] bg-inherit transition-colors"
+                  )}
+                >
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: isSuccess ? 1 : 0 }}
+                    transition={{ delay: 0.2, bounce: 1 }}
+                  >
+                    <CheckIcon className="h-6 w-6" />
+                  </motion.span>
+                </motion.span>
+              </Button>
             </div>
           </Card>
-        </Form>
+        </fetcher.Form>
         <div>
           {rsvpLoggedInUser && rsvpLoggedInUser.length > 0 && (
             <div className="mb-6 grid gap-5">

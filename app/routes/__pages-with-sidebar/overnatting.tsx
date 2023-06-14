@@ -9,6 +9,29 @@ export default function Index() {
     <MainLayout heading="Overnatting & transport">
       <PageGrid>
         <div className="grid content-start gap-4">
+          <Card title="Bestilling">
+            <div className="grid gap-2">
+              <p className="">
+                <strong>
+                  Nå har du muligheten til å bestille rom hos Grønolen
+                  Fjellgard!
+                </strong>
+              </p>
+              <p>
+                Alt du trenger å gjøre er å sende en e-post til{" "}
+                <A href="mailto:gronolen@gronolen.no?subject=Bryllupshelg 19. august">
+                  gronolen@gronolen.no
+                </A>{" "}
+                og oppgi om du ønsker enkelt- eller dobbeltrom, samt antall
+                netter du ønsker å bo. Husk å merke emnefeltet i e-posten med
+                "Bryllupshelg 19. august".
+              </p>
+              <p>
+                Det er rikelig med rom tilgjengelig på Grønolen Fjellgard, slik
+                at alle får plass! Pakke og pris er gitt under.
+              </p>
+            </div>
+          </Card>
           <Card title="Grønolen Fjellgard">
             <p>
               Vi gifter oss på Grønolen Fjellgard, en flott fjellgård på
@@ -39,23 +62,6 @@ export default function Index() {
               </p>
             </div>
           </Card>{" "}
-          <Card title="Bestilling">
-            <div className="grid gap-2">
-              <p>
-                Innen få dager vil vi komme med mer detaljer rundt hvordan
-                du/dere kan bestille overnatting. Rom kan bestilles fra 15.juni.
-              </p>
-              {/* <div>
-                <ArrowLink
-                  className="pt-4"
-                  href="https://gronolen.no/booking/"
-                  direction="right"
-                >
-                  Bestill overnatting
-                </ArrowLink>
-              </div> */}
-            </div>
-          </Card>
           <Card title="Transport">
             <div className="grid gap-2">
               <p> Det er mulig å parkere ved Grønolen Fjellgard. </p>
