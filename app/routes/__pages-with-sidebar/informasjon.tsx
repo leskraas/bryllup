@@ -13,6 +13,11 @@ export default function Index() {
           <Card title="Overnatting & Transport">
             <div className="grid gap-2">
               <p>
+                <strong>
+                  Nå er det mulig å bestille rom hos Grønolen Fjellgard!
+                </strong>
+              </p>
+              <p>
                 Vi gifter oss på Grønolen Fjellgard, en flott fjellgård på
                 Beitostølen. Alle rommene er reservert til oss denne helgen, så
                 det er plass til alle. Vi håper at du/dere vil bo her sammen med

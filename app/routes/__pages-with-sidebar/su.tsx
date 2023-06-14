@@ -4,7 +4,7 @@ import { useActionData, useFetcher, useLoaderData } from "@remix-run/react";
 import type { ActionArgs, LoaderArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Button } from "~/components/Button";
@@ -350,23 +350,30 @@ export default function Rsvp(): JSX.Element {
             <div className="px-4 py-3 text-right sm:px-6">
               <Button type="submit" className="relative">
                 Send inn{" "}
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{
-                    scale: isSuccess ? 1 : 0,
-                  }}
-                  className={twMerge(
-                    "absolute inset-0 grid place-items-center rounded-[inherit] bg-inherit transition-colors"
+                <AnimatePresence>
+                  {isSuccess && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      animate={{
+                        scale: 1,
+                        opacity: 1,
+                      }}
+                      className={twMerge(
+                        "absolute inset-0 grid place-items-center rounded-[inherit] bg-inherit transition-colors"
+                      )}
+                    >
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        exit={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.1, type: "spring" }}
+                      >
+                        <CheckIcon className="h-6 w-6" />
+                      </motion.span>
+                    </motion.span>
                   )}
-                >
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: isSuccess ? 1 : 0 }}
-                    transition={{ delay: 0.2, bounce: 1 }}
-                  >
-                    <CheckIcon className="h-6 w-6" />
-                  </motion.span>
-                </motion.span>
+                </AnimatePresence>
               </Button>
             </div>
           </Card>

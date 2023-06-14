@@ -13,8 +13,7 @@ export default function Index() {
             <div className="grid gap-2">
               <p className="">
                 <strong>
-                  Nå har du muligheten til å bestille rom hos Grønolen
-                  Fjellgard!
+                  Nå er det mulig å bestille rom hos Grønolen Fjellgard!
                 </strong>
               </p>
               <p>
