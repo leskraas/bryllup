@@ -51,7 +51,11 @@ export default function Index() {
               <p>
                 Siden noen likevel har ytret at de ønsker å gi en gave, har vi
                 laget en liten ønskeliste. Ønskelisten finner dere{" "}
-                <A href="https://onskelister.no/liste?id=oGzXtXTVo9GU4FF041x3">
+                <A
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://onskelister.no/liste?id=oGzXtXTVo9GU4FF041x3"
+                >
                   her (onskelister.no/liste?id=oGzXtXTVo9GU4FF041x3)
                 </A>
                 .
