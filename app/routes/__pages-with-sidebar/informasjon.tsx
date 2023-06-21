@@ -49,10 +49,12 @@ export default function Index() {
                 feiringen.
               </p>
               <p>
-                Siden noen likevel har ytret at de ønsker å gi en gave, skal vi
-                også lage en ønskeliste. Den er ikke helt ferdig enda, men du
-                vil finne den her om kort tid.
-                {/* har vi lage en liten ønskeliste her. */}
+                Siden noen likevel har ytret at de ønsker å gi en gave, har vi
+                laget en liten ønskeliste. Ønskelisten finner dere{" "}
+                <A href="https://onskelister.no/liste?id=oGzXtXTVo9GU4FF041x3">
+                  her (onskelister.no/liste?id=oGzXtXTVo9GU4FF041x3)
+                </A>
+                .
               </p>
             </div>
           </Card>
