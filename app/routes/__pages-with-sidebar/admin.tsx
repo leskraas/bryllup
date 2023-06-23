@@ -20,7 +20,6 @@ export async function loader({ request }: LoaderArgs) {
   const allUsers = await getAllUsersAdmin(request);
   return json({ allUsers });
 }
-
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
   const { method } = request;
