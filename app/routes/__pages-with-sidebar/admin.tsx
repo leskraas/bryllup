@@ -11,9 +11,9 @@ import { createUser, deleteUserById, updateUser } from "~/models/user.server";
 import { getAllUsersAdmin, requireAdminUser } from "~/session.server";
 import clsx from "clsx";
 import { Attend } from "@prisma/client";
-import { Card } from "~/components/Card";
 import { deleteAllRsvp } from "~/models/rsvp.server";
 import { useIsSubmissionSuccess } from "~/components/hooks/useIsSubmissionSuccess";
+import dayjs from "dayjs";
 
 export async function loader({ request }: LoaderArgs) {
   await requireAdminUser(request);
@@ -180,38 +180,46 @@ export default function Admin(): JSX.Element {
           <div className="font-bold">Svar</div>
           <div className="font-bold">Innsender</div>
           <div className="font-bold">Kommentar / allergi</div>
-          {allUsers.map((user) => (
-            <Fragment key={`${user.id}-admin-rsvp`}>
-              <div className="font-bold">{user.name}</div>
-              <div>
-                {user.rsvps?.map((rsvp) => (
-                  <div
-                    key={`${rsvp.id}-attending`}
-                    className={clsx([
-                      !rsvp?.attend && "text-red-700",
-                      rsvp?.attend === Attend.YES && "text-green-800",
-                      rsvp?.attend === Attend.NO && "text-yellow-400",
-                      rsvp?.attend === Attend.SATURDAY && "text-orange-400",
-                    ])}
-                  >
-                    {rsvp?.attend ? rsvp.attend : "Har ikke svart"}
-                  </div>
-                ))}
-              </div>
-              <div>
-                {user.rsvps?.map((rsvp) => (
-                  <div key={`${rsvp.id}-submitter`}>{rsvp?.submitterName}</div>
-                ))}
-              </div>
-              <div>
-                {user.rsvps?.map((rsvp) => (
-                  <div key={`${rsvp.id}-additionalInfo`}>
-                    {rsvp?.additionalInfo}
-                  </div>
-                ))}
-              </div>
-            </Fragment>
-          ))}
+          {allUsers
+            .sort(
+              (a, b) =>
+                dayjs(b.rsvps.find((r) => r.createdAt)?.createdAt).unix() -
+                dayjs(a.rsvps.find((r) => r.createdAt)?.createdAt).unix()
+            )
+            .map((user) => (
+              <Fragment key={`${user.id}-admin-rsvp`}>
+                <div className="font-bold">{user.name}</div>
+                <div>
+                  {user.rsvps?.map((rsvp) => (
+                    <div
+                      key={`${rsvp.id}-attending`}
+                      className={clsx([
+                        !rsvp?.attend && "text-red-700",
+                        rsvp?.attend === Attend.YES && "text-green-800",
+                        rsvp?.attend === Attend.NO && "text-yellow-400",
+                        rsvp?.attend === Attend.SATURDAY && "text-orange-400",
+                      ])}
+                    >
+                      {rsvp?.attend ? rsvp.attend : "Har ikke svart"}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {user.rsvps?.map((rsvp) => (
+                    <div key={`${rsvp.id}-submitter`}>
+                      {rsvp?.submitterName}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  {user.rsvps?.map((rsvp) => (
+                    <div key={`${rsvp.id}-additionalInfo`}>
+                      {rsvp?.additionalInfo}
+                    </div>
+                  ))}
+                </div>
+              </Fragment>
+            ))}
           <p>Antall gjester:{allUsers.length}</p>
           <p>
             Antall svar:
