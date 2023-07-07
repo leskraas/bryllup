@@ -5,7 +5,7 @@ import { ArrowLink } from "~/components/ArrowButton";
 import type { MetaFunction } from "@remix-run/node";
 
 function getCountDown(fromDate: dayjs.Dayjs) {
-  return dayjs.duration(dayjs("2023-09-19").diff(fromDate));
+  return dayjs.duration(dayjs("2023-08-19").diff(fromDate));
 }
 
 export const meta: MetaFunction = () => ({
