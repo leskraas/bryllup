@@ -1,11 +1,26 @@
 import { PresentPerson } from "~/components/PresentPerson";
 import { Card } from "~/components/Card";
 import { PageGrid } from "~/components/PageGrid";
-import { Link } from "@remix-run/react";
+import { Link, useLoaderData, useLocation } from "@remix-run/react";
 import { MainLayout } from "~/components/layout/MainLayout";
 import { A } from "~/components/A";
+import { LoaderArgs, json } from "@remix-run/server-runtime";
+import { isLoggedIn } from "~/session.server";
+import { Button } from "~/components/Button";
+import {
+  ArrowLeftOnRectangleIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/outline";
+
+export async function loader({ request }: LoaderArgs) {
+  return json({
+    isLoggedIn: await isLoggedIn(request),
+  });
+}
 
 export default function Index() {
+  const { isLoggedIn } = useLoaderData<typeof loader>();
+  const location = useLocation();
   return (
     <MainLayout heading="Informasjon">
       <PageGrid>
@@ -77,6 +92,69 @@ export default function Index() {
                 </A>
                 .
               </p>
+            </div>
+          </Card>
+          <Card
+            title={
+              <span className="flex items-center gap-2">
+                {!isLoggedIn && <LockClosedIcon className="h-5 w-5" />} Musikk
+              </span>
+            }
+          >
+            <div className="grid gap-2">
+              <p>
+                Gjennom kvelden skal vi spille litt musikk. Siden vi er mange
+                mennesker og vi har alle ulik musikksmak har vi laget en åpen
+                spilleliste som alle kan legge inn ønsker i.{" "}
+                {isLoggedIn && (
+                  <>
+                    Listen heter{" "}
+                    <A
+                      href="https://open.spotify.com/playlist/7eRE7qVGsqL9NJkGI1faoz?si=3475ab6fa88e4944"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Bryllup Louise og Lars Erik
+                    </A>{" "}
+                    og du finner den på spotify eller{" "}
+                    <A
+                      href="https://open.spotify.com/playlist/7eRE7qVGsqL9NJkGI1faoz?si=3475ab6fa88e4944"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      her
+                    </A>
+                    .
+                  </>
+                )}
+              </p>
+              {!isLoggedIn ? (
+                <>
+                  <p>
+                    Du må være logget inn for å få tilgang til spillelisten.{" "}
+                  </p>
+                  <Link
+                    to={{
+                      pathname: "/logg-inn",
+                      search: `redirectTo=${location.pathname}`,
+                    }}
+                    className="text-md inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-900 bg-sand-100/5 py-2 px-4 font-medium text-slate-900 shadow-sm backdrop-blur-sm hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    <ArrowLeftOnRectangleIcon className="h-5 w-5" />
+                    Logg inn
+                  </Link>
+                </>
+              ) : (
+                <iframe
+                  className="rounded-md"
+                  src="https://open.spotify.com/embed/playlist/7eRE7qVGsqL9NJkGI1faoz?utm_source=generator"
+                  width="100%"
+                  height="400"
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+              )}
             </div>
           </Card>
           <Card title="En stor takk">

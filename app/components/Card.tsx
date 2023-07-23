@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 type CardProps = {
-  title?: string;
+  title?: ReactNode;
   children: React.ReactNode;
   className?: string;
 };
