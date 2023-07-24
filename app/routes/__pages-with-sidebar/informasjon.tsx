@@ -48,11 +48,16 @@ export default function Index() {
           </Card>
           <Card title="Kleskode">
             <div className="grid gap-2">
-              <p>Dress/mørk dress.</p>
+              <p className="font-semibold">Dress/mørk dress.</p>
               <p>
                 I fjellbryllup-stil er det hyggelig om de som har bunad bruker
                 den under vielsen. Mellom vielse og middag er det god tid til å
                 skifte om hvis man ønsker det.
+              </p>
+              <p>
+                På fredagen vil det være mingling og leker, vi anbefaler derfor
+                folk å ha på seg klær til aktivitet/ til å være ute. OBS kan
+                være kjølig på fjellet!{" "}
               </p>
             </div>
           </Card>
@@ -91,6 +96,13 @@ export default function Index() {
                   torjus.saethre@gmail.com
                 </A>
                 .
+              </p>
+              <p>
+                Fristen for å melde seg som taler er{" "}
+                <time className="font-semibold" dateTime="14.08.23">
+                  mandag 14. august
+                </time>
+                .{" "}
               </p>
             </div>
           </Card>
@@ -146,7 +158,7 @@ export default function Index() {
                 </>
               ) : (
                 <iframe
-                  className="rounded-md"
+                  className="mt-4 rounded-md"
                   src="https://open.spotify.com/embed/playlist/7eRE7qVGsqL9NJkGI1faoz?utm_source=generator"
                   width="100%"
                   height="400"
