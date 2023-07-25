@@ -27,7 +27,7 @@ export default function Index() {
             Det serveres frokost. Viktig å spise godt, det blir en lang dag.
           </p>
         </Agenda>
-        <Agenda timeFrom="11:00" timeTo="12:00" title="Dra til kirken">
+        <Agenda timeFrom="11:00" timeTo="12:00" title="Dra til Lidar kirken">
           <p>
             For å redusere antall biler på veien anbefaler vi at vi fyller opp
             bilene så godt det lar seg gjøre.
