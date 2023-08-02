@@ -110,6 +110,17 @@ export default function Admin(): JSX.Element {
     }
   }, [isEditing]);
 
+  const sortedUsers = allUsers.sort(
+    (a, b) =>
+      dayjs(b.rsvps.find((r) => r.createdAt)?.createdAt).unix() -
+      dayjs(a.rsvps.find((r) => r.createdAt)?.createdAt).unix()
+  );
+  const yes = sortedUsers.filter(
+    (e) => e.rsvps.length && e.rsvps[0].attend !== "NO"
+  );
+  console.log(yes);
+  console.log(yes.map((e) => e.name));
+
   return (
     <MainLayout heading="Admin">
       <ul className="grid gap-3">
