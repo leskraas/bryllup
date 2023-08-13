@@ -25,6 +25,48 @@ export default function Index() {
     <MainLayout heading="Informasjon">
       <PageGrid>
         <div className="grid content-start gap-4">
+          <Card title="SNART BRYLLUP!!">
+            <div className="grid gap-2">
+              <p>
+                <strong>Litt informasjon om fredagen:</strong>
+              </p>
+              <p>
+                Buffet blir servert fra kl.18. Skulle noen komme sent opp så gi
+                oss beskjed, så kan vi holde av noe mat :)
+              </p>
+              <p>
+                Vi starter leker kl.19:30. Det ser ut til at vi får en glimt av
+                solen, men vi anbefaler folk å ha på seg klær til aktivitet/ å
+                være ute.
+              </p>
+              <p>
+                Programmet for helgen finner dere{" "}
+                <Link
+                  to="/programmet"
+                  className="font-medium italic underline hover:text-sand-800"
+                >
+                  her
+                </Link>
+              </p>
+              <p>Vi gleder oss masse! {"<3"} </p>
+            </div>
+          </Card>
+
+          <Card title="Kleskode">
+            <div className="grid gap-2">
+              <p className="font-semibold">Dress/mørk dress.</p>
+              <p>
+                I fjellbryllup-stil er det hyggelig om de som har bunad bruker
+                den under vielsen. Mellom vielse og middag er det god tid til å
+                skifte om hvis man ønsker det.
+              </p>
+              <p>
+                På fredagen vil det være mingling og leker, vi anbefaler derfor
+                folk å ha på seg klær til aktivitet/ til å være ute. OBS kan
+                være kjølig på fjellet!{" "}
+              </p>
+            </div>
+          </Card>
           <Card title="Overnatting & Transport">
             <div className="grid gap-2">
               <p>
@@ -43,21 +85,6 @@ export default function Index() {
                 >
                   Finn ut mer her.
                 </Link>
-              </p>
-            </div>
-          </Card>
-          <Card title="Kleskode">
-            <div className="grid gap-2">
-              <p className="font-semibold">Dress/mørk dress.</p>
-              <p>
-                I fjellbryllup-stil er det hyggelig om de som har bunad bruker
-                den under vielsen. Mellom vielse og middag er det god tid til å
-                skifte om hvis man ønsker det.
-              </p>
-              <p>
-                På fredagen vil det være mingling og leker, vi anbefaler derfor
-                folk å ha på seg klær til aktivitet/ til å være ute. OBS kan
-                være kjølig på fjellet!{" "}
               </p>
             </div>
           </Card>
