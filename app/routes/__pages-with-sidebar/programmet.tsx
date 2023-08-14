@@ -78,11 +78,10 @@ export default function Index() {
         <Agenda timeFrom="09:00" timeTo="11:00" title="Frokost">
           <p>Frokost serveres.</p>
         </Agenda>
-        <Agenda timeFrom="14:00" timeTo="" title="Utsjekk">
+        <Agenda timeFrom="12:00" timeTo="" title="Utsjekk">
           <p>
-            Utsjekk skal skje før kl. 14:00. Lurt å spre dette litt utover
-            mellom 12-14. Vi takker for laget og er glade for at du/dere ville
-            feire denne store dagen med oss.
+            Utsjekk skal skje før kl. 12:00. Vi takker for laget og er glade for
+            at du/dere ville feire denne store dagen med oss.
           </p>
         </Agenda>
       </Card>
