@@ -74,6 +74,9 @@ export default function Index() {
         <Agenda timeFrom="" timeTo="" title="Fest">
           <p>Vi setter i gang festen.</p>
         </Agenda>
+        <Agenda timeFrom="01:00" timeTo="" title="Nattmat">
+          <p>Litt nattmat vil bli servert.</p>
+        </Agenda>
         <DaySeparator date={dayjs("2023-08-20", "YYYY-MM-DD")} />
         <Agenda timeFrom="09:00" timeTo="11:00" title="Frokost">
           <p>Frokost serveres.</p>
